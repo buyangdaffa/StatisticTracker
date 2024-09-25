@@ -5,11 +5,8 @@ I am particularly interested in this project because I am a big soccer fan and a
 
 
 
-## A subtitle
-
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
-
-An example of text with **bold** and *italic* fonts.  
+## User Stories
+- As a user, I want to be able to create a new player and add it to a list of players.
+- As a user, I want to be able to view a list of available players for upcoming match based on their number of yellow cards, red cards and injury.
+- As a user, I want to be able to create comparison visualization from the performance of key metrics (parameters) of two players.
+- As a user, I want to be able to create simple dataframe for each players that shows their statistics records throughout the season.
