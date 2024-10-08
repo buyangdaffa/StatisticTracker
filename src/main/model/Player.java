@@ -17,10 +17,10 @@ public class Player {
     private int losses;
     private int draws;
 
-    // REQUIRES: age > 0, height > 0, weight > 0
+    // REQUIRES: age > 0, height > 0
     // MODIFIES: this
-    // EFFECTS: constructs a player with the given name, position, age, height, weight, and jersey number
-    public Player(String name, String position, int age, int height, int weight, int jerseyNumber) {
+    // EFFECTS: constructs a player with the given name, position, age, height, and jersey number
+    public Player(String name, String position, int age, int height, int jerseyNumber) {
         this.name = name;
         this.position = position;
         this.age = age;
