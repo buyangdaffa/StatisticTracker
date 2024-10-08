@@ -104,28 +104,28 @@ public class Player {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds the total number of goals scored
-    public void scoredGoal(int totalGoals) {
+    // EFFECTS: increment the total number of goals scored
+    public void scoredGoal() {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds the total number of assists
-    public void createdAssist(int totalAssists) {
+    // EFFECTS: increment the total number of assists
+    public void createdAssist() {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds the total number of appearances
-    public void addAppearances(int appearances) {
+    // EFFECTS: increment the total number of appearances
+    public void addAppearances() {
     }
 
     // MODIFIES: this
     // EFFECTS: adds the total number of yellow cards
-    public void addYellowCards(int yellowCards) {
+    public void addYellowCards() {
     }
 
     // MODIFIES: this
     // EFFECTS: adds the total number of red cards
-    public void addRedCards(int redCards) {
+    public void addRedCards() {
     }
 
     // MODIFIES: this
