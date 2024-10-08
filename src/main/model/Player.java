@@ -5,7 +5,6 @@ public class Player {
     private String position;
     private int age;
     private int height;
-    private int weight;
     private int jerseyNumber;
     private int minPlayed;
     private int totalGoals;
@@ -26,7 +25,6 @@ public class Player {
         this.position = position;
         this.age = age;
         this.height = height;
-        this.weight = weight;
         this.jerseyNumber = jerseyNumber;
         this.minPlayed = 0;
         this.totalGoals = 0;
@@ -53,10 +51,6 @@ public class Player {
     }
 
     public int getHeight() {
-        return 0;
-    }
-
-    public int getWeight() {
         return 0;
     }
 
@@ -103,7 +97,7 @@ public class Player {
     public int getDraws() {
         return 0;
     }
-    
+
     public void setMinPlayed(int minPlayed) {
         this.minPlayed += minPlayed;
     }
