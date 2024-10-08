@@ -98,31 +98,38 @@ public class Player {
         return 0;
     }
 
-    public void setMinPlayed(int minPlayed) {
-        this.minPlayed += minPlayed;
+    // MODIFIES: this
+    // EFFECTS: adds the number of minutes played
+    public void addMinPlayed(int minPlayed) {
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the total number of goals scored
     public void scoredGoal(int totalGoals) {
-        this.totalGoals += totalGoals;
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the total number of assists
     public void createdAssist(int totalAssists) {
-        this.totalAssists += totalAssists;
     }
 
-    public void setAppearances(int appearances) {
-        this.appearances += appearances;
+    // MODIFIES: this
+    // EFFECTS: adds the total number of appearances
+    public void addAppearances(int appearances) {
     }
 
-    public void setYellowCards(int yellowCards) {
-        this.yellowCards += yellowCards;
+    // MODIFIES: this
+    // EFFECTS: adds the total number of yellow cards
+    public void addYellowCards(int yellowCards) {
     }
 
-    public void setRedCards(int redCards) {
-        this.redCards += redCards;
+    // MODIFIES: this
+    // EFFECTS: adds the total number of red cards
+    public void addRedCards(int redCards) {
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets the player as injured
     public void setIsInjured(boolean isInjured) {
-        this.isInjured = isInjured;
     }
 }
