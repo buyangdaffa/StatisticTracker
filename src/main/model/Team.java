@@ -23,32 +23,26 @@ public class Team {
         this.totalDraws = 0;
     }
 
-    // EFFECTS: returns the name of the team
     public String getTeamName() {
         return null;
     }
 
-    // EFFECTS: returns the name of the coach
     public String getCoachName() {
         return null;
     }
 
-    // EFFECTS: returns the total number of wins
     public int getTotalWins() {
         return 0;
     }
 
-    // EFFECTS: returns the total number of losses
     public int getTotalLosses() {
         return 0;
     }
 
-    // EFFECTS: returns the total number of draws
     public int getTotalDraws() {
         return 0;
     }
 
-    // EFFECTS: returns the list of players in the team
     public List<Player> getPlayers() {
         return null;
     }
@@ -79,8 +73,15 @@ public class Team {
     public void incrementDraws() {
     }
 
-    // EFFECTS: returns the total number of players in the team
     public int getTotalPlayers() {
+        return 0;
+    }
+
+    public int getAverageAge() {
+        return 0;
+    }
+
+    public int getAverageHeight() {
         return 0;
     }
 }
