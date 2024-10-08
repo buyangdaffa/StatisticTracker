@@ -102,11 +102,11 @@ public class Player {
         this.minPlayed += minPlayed;
     }
 
-    public void setTotalGoals(int totalGoals) {
+    public void scoredGoal(int totalGoals) {
         this.totalGoals += totalGoals;
     }
 
-    public void setTotalAssists(int totalAssists) {
+    public void createdAssist(int totalAssists) {
         this.totalAssists += totalAssists;
     }
 
