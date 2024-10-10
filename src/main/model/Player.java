@@ -105,12 +105,12 @@ public class Player {
 
     // MODIFIES: this
     // EFFECTS: increment the total number of goals scored
-    public void scoredGoal() {
+    public void addGoal() {
     }
 
     // MODIFIES: this
     // EFFECTS: increment the total number of assists
-    public void createdAssist() {
+    public void addAssist() {
     }
 
     // MODIFIES: this
@@ -129,7 +129,7 @@ public class Player {
     }
 
     // MODIFIES: this
-    // EFFECTS: sets the player as injured
-    public void setIsInjured(boolean isInjured) {
+    // EFFECTS: sets the player as injured, only works to set the player from healthy to injured not the other way
+    public void setIsInjured() {
     }
 }
