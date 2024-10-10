@@ -128,4 +128,15 @@ public class Team {
         }
         return availablePlayers;
     }
+
+    // EFFECTS: returns a list of injured players
+    public List<Player> getInjuredPlayers() {
+        List<Player> injuredPlayers = new ArrayList<>();
+        for (Player player : this.players) {
+            if (!player.isAvailable()) {
+                injuredPlayers.add(player);
+            }
+        }
+        return injuredPlayers;
+    }
 }
