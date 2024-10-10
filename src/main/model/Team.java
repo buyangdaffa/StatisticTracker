@@ -24,64 +24,97 @@ public class Team {
     }
 
     public String getTeamName() {
-        return null;
+        return this.teamName;
     }
 
     public String getCoachName() {
-        return null;
+        return this.coachName;
     }
 
     public int getTotalWins() {
-        return 0;
+        return this.totalWins;
     }
 
     public int getTotalLosses() {
-        return 0;
+        return this.totalLosses;
     }
 
     public int getTotalDraws() {
-        return 0;
+        return this.totalDraws;
     }
 
     public List<Player> getPlayers() {
-        return null;
+        return this.players;
     }
 
     // MODIFIES: this
     // EFFECTS: adds a player to the team
     public void addPlayer(Player player) {
+        this.players.add(player);
     }
 
     // MODIFIES: this
     // EFFECTS: removes a player from the team by name (if found), returns true if removed, false if not
     public boolean removePlayer(String playerName) {
-        return false;
+        for (Player player : this.players) {
+            if (player.getName().equals(playerName)) {
+                this.players.remove(player);
+                return true;
+            }
+        }
+        return false; 
     }
 
     // MODIFIES: this
-    // EFFECTS: increments the number of wins by 1
+    // EFFECTS: increments the number of wins by 1 and increments the wins for each player in the team
     public void incrementWins() {
+        this.totalWins++;
+        for (Player player : this.players) {
+            player.incrementWins();
+        }
     }
 
     // MODIFIES: this
     // EFFECTS: increments the number of losses by 1
     public void incrementLosses() {
+        this.totalLosses++;
+        for (Player player : this.players) {
+            player.incrementLosses();
+        }
     }
 
     // MODIFIES: this
     // EFFECTS: increments the number of draws by 1
     public void incrementDraws() {
+        this.totalDraws++;
+        for (Player player : this.players) {
+            player.incrementDraws();
+        }
     }
 
     public int getTotalPlayers() {
-        return 0;
+        return this.players.size();
     }
 
     public int getAverageAge() {
-        return 0;
+        if (this.players.isEmpty()) {
+            return 0;
+        }
+        int totalAge = 0;
+        for (Player player : this.players) {
+            totalAge += player.getAge();
+        }
+        return totalAge / this.players.size();
     }
 
     public int getAverageHeight() {
-        return 0;
+        if (this.players.isEmpty()) {
+            return 0;
+        }
+        int totalHeight = 0;
+        for (Player player : this.players) {
+            totalHeight += player.getHeight();
+        }
+        return totalHeight / this.players.size();
     }
 }

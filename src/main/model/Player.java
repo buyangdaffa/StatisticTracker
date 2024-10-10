@@ -39,97 +39,122 @@ public class Player {
     }
 
     public String getName() {
-        return null;
+        return this.name;
     }
 
     public String getPosition() {
-        return null;
+        return this.position;
     }
 
     public int getAge() {
-        return 0;
+        return this.age;
     }
 
     public int getHeight() {
-        return 0;
+        return this.height;
     }
 
     public int getJerseyNumber() {
-        return 0;
+        return this.jerseyNumber;
     }
     
     public int getMinPlayed() {
-        return 0;
+        return this.minPlayed;
     }
 
     public int getTotalGoals() {
-        return 0;
+        return this.totalGoals;
     }
 
     public int getTotalAssists() {
-        return 0;
+        return this.totalAssists;
     }
 
     public int getAppearances() {
-        return 0;
+        return this.appearances;
     }
 
     public int getYellowCards() {
-        return 0;
+        return this.yellowCards;
     }
 
     public int getRedCards() {
-        return 0;
+        return this.redCards;
     }
 
     public boolean getIsInjured() {
-        return false;
+        return this.isInjured;
     }
 
     public int getWins() {
-        return 0;
+        return this.wins;
     }
 
     public int getLosses() {
-        return 0;
+        return this.losses;
     }
 
     public int getDraws() {
-        return 0;
+        return this.draws;
     }
 
     // MODIFIES: this
     // EFFECTS: adds the number of minutes played
     public void addMinPlayed(int minPlayed) {
+        this.minPlayed += minPlayed;
     }
 
     // MODIFIES: this
     // EFFECTS: increment the total number of goals scored
     public void addGoal() {
+        this.totalGoals++;
     }
 
     // MODIFIES: this
     // EFFECTS: increment the total number of assists
     public void addAssist() {
+        this.totalAssists++;
     }
 
     // MODIFIES: this
     // EFFECTS: increment the total number of appearances
     public void addAppearances() {
+        this.appearances++;
     }
 
     // MODIFIES: this
     // EFFECTS: adds the total number of yellow cards
     public void addYellowCards() {
+        this.yellowCards++;
     }
 
     // MODIFIES: this
     // EFFECTS: adds the total number of red cards
     public void addRedCards() {
+        this.redCards++;
     }
 
     // MODIFIES: this
     // EFFECTS: sets the player as injured, only works to set the player from healthy to injured not the other way
     public void setIsInjured() {
+        this.isInjured = true;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: increments the number of wins by 1
+    public void incrementWins() {
+        this.wins++;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: increments the number of losses by 1
+    public void incrementLosses() {
+        this.losses++;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: increments the number of draws by 1
+    public void incrementDraws() {
+        this.draws++;
     }
 }
