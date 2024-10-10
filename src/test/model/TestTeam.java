@@ -139,4 +139,25 @@ public class TestTeam {
     void testGetAverageHeightEmpty() {
         assertEquals(0, team.getAverageHeight());
     }
+
+    @Test
+    void testGetAvailablePlayers() {
+        team.addPlayer(player1);
+        team.addPlayer(player2);
+        team.addPlayer(player3);
+        List<Player> availablePlayers = new ArrayList<>();
+        availablePlayers.add(player1);
+        availablePlayers.add(player2);
+        availablePlayers.add(player3);
+        assertEquals(availablePlayers, team.getPlayers());
+    }
+
+    @Test
+    void testGetAvailablePlayersInjured() {
+        team.addPlayer(player1);
+        team.addPlayer(player2);
+        team.addPlayer(player3);
+        player1.setIsInjured();
+        assertEquals(team.getAvailablePlayers().size(), 2);
+    }
 }
