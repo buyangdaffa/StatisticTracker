@@ -117,4 +117,15 @@ public class Team {
         }
         return totalHeight / this.players.size();
     }
+
+    // EFFECTS: returns a list of available players
+    public List<Player> getAvailablePlayers() {
+        List<Player> availablePlayers = new ArrayList<>();
+        for (Player player : this.players) {
+            if (player.isAvailable()) {
+                availablePlayers.add(player);
+            }
+        }
+        return availablePlayers;
+    }
 }

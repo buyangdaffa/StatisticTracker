@@ -157,4 +157,9 @@ public class Player {
     public void incrementDraws() {
         this.draws++;
     }
+
+    public boolean isAvailable() {
+        return !this.isInjured;
+    } 
+    
 }
