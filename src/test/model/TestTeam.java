@@ -160,4 +160,21 @@ public class TestTeam {
         player1.setIsInjured();
         assertEquals(team.getAvailablePlayers().size(), 2);
     }
+
+    @Test
+    void testGetInjuredPlayers() {
+        team.addPlayer(player1);
+        team.addPlayer(player2);
+        team.addPlayer(player3);
+        player1.setIsInjured();
+        assertEquals(1, team.getInjuredPlayers().size());
+    }
+
+    @Test
+    void testGetInjuredPlayersNone() {
+        team.addPlayer(player1);
+        team.addPlayer(player2);
+        team.addPlayer(player3);
+        assertEquals(0, team.getInjuredPlayers().size());
+    }
 }
