@@ -1,7 +1,8 @@
 package model;
 
-// This class represents a player in a soccer team that have attributes such as name, position, age, height and jersey number
-// and have statistics record such as minutes played, total goals, assists, appearances, yellow cards, red cards, injury status,
+// This class represents a player in a soccer team that have attributes such as 
+// name, position, age, height and jersey number and have statistics record such as
+// minutes played, total goals, assists, appearances, yellow cards, red cards, injury status,
 // while also keep tracks the win, draw, loss record that align with their team records.
 
 public class Player {
