@@ -106,6 +106,14 @@ public class TestPlayer {
     }
 
     @Test
+    void testSetIsInjuredReverse() {
+        player3.setIsInjured();
+        assertTrue(player3.getIsInjured());
+        player3.setIsInjured();
+        assertFalse(player3.getIsInjured());
+    }
+
+    @Test
     void testIsAvailable() {
         assertTrue(player1.isAvailable());
         player1.setIsInjured();

@@ -15,7 +15,9 @@ public class StatisticTracker {
     // EFFECTS: creates an instance of the StatisticTracker console UI application
     public StatisticTracker() {
         init();
+        printSeparator();
         System.out.println("Hello Coach! What do you want to do?");
+        printSeparator();
         run();  // Run the application
     }
 
@@ -36,9 +38,11 @@ public class StatisticTracker {
 
     // EFFECTS: displays the main menu and processes user input
     private void mainMenu() {
+        printSeparator();
         System.out.println("1. Create a new team");
         System.out.println("2. View and edit all teams");
         System.out.println("3. Exit");
+        printSeparator();
         String input = this.input.nextLine();
         processMenuCommands(input);
     }
@@ -57,7 +61,9 @@ public class StatisticTracker {
                 this.running = false;
                 break;
             default:
+                printSeparator();
                 System.out.println("Invalid input. Please try again.");
+                printSeparator();
                 break;
         }
     }
@@ -77,11 +83,14 @@ public class StatisticTracker {
         Team team = new Team(teamName, coachName);
         this.teams.add(team);
 
+        printSeparator();
         System.out.println("Team created successfully!");
+        printSeparator();
     }
 
     // EFFECTS: print the team details
     private void printTeamDetails(Team team) {
+        printSeparator();
         System.out.println("Team: " + team.getTeamName());
         System.out.println("Coach: " + team.getCoachName());
         System.out.println("Wins: " + team.getTotalWins());
@@ -97,6 +106,7 @@ public class StatisticTracker {
         for (Player player : team.getInjuredPlayers()) {
             System.out.println(player.getName() + "/" + player.getPosition() + "/" + player.getJerseyNumber());
         }
+        printSeparator();
     }
 
     // EFFECTS: print a separator
@@ -104,27 +114,18 @@ public class StatisticTracker {
         System.out.println("--------------------------------------------------");
     }
 
-        // MODIFIES: this
+    // MODIFIES: this
     // EFFECTS: edits a team
     private void viewTeams() {
         if (this.teams.isEmpty()) {
-            printSeparator();
-            System.out.println("No teams found.");
-            printSeparator();
+            printNoTeamsFound();
         } else {
             int currentTeamIndex = 0;
             String input = "";
     
             while (!input.equals("q")) {
                 Team team = this.teams.get(currentTeamIndex);
-                printSeparator();
-                printTeamDetails(team);
-    
-                printSeparator();
-                System.out.println("Edit team " + (currentTeamIndex + 1) + " of " + this.teams.size());
-                printEditTeamMenu();
-                System.out.println("\nPress 'q' to quit.");
-                printSeparator();
+                printViewTeamsMenu(currentTeamIndex, team);
                 input = this.input.nextLine();
     
                 if (input.equals("q")) {
@@ -140,7 +141,25 @@ public class StatisticTracker {
         }
     }
 
-    private void printEditTeamMenu() {
+    // EFFECTS: print no teams found message
+    private void printNoTeamsFound() {
+        printSeparator();
+        System.out.println("No teams found.");
+        printSeparator();
+    }
+
+    // EFFECTS: print everything in the viewTeams menu
+    private void printViewTeamsMenu(int currentTeamIndex, Team team) {
+        printSeparator();
+        printTeamDetails(team);
+        printSeparator();
+        printEditTeamMenu(currentTeamIndex);
+        printSeparator();
+    }
+
+
+    private void printEditTeamMenu(int currentTeamIndex) {
+        System.out.println("Edit team " + (currentTeamIndex + 1) + " of " + this.teams.size());
         System.out.println("1. Add player");
         System.out.println("2. Remove player");
         System.out.println("3. View and edit player");
@@ -150,40 +169,47 @@ public class StatisticTracker {
         System.out.println("7. Increment draws");
         System.out.println("8. Previous team");
         System.out.println("9. Next team");
+        System.out.println("\nPress 'q' to quit.");
     }
 
     // MODIFIES: this
     // EFFECTS: processes the user input for the edit team menu
     private void processEditCommands(String input, Team team) {
-        switch (input) {
-            case "1":
-                addPlayer(team);
-                break;
-            case "2":
-                removePlayer(team);
-                break;
-            case "3":
-                viewAndEditPlayers(team);
-                break;
-            case "4":
-                comparePlayersPrompt(team);
-                break;
-            case "5":
-                team.incrementWins();
-                System.out.println("Wins incremented successfully!");
-                break;
-            case "6":
-                team.incrementLosses();
-                System.out.println("Losses incremented successfully!");
-                break;
-            case "7":
-                team.incrementDraws();
-                System.out.println("Draws incremented successfully!");
-                break;
-            default:
-                System.out.println("Invalid input. Please try again.");
-                break;
+        if (input.equals("1")) {
+            addPlayer(team);
+        } else if (input.equals("2")) {
+            removePlayer(team);
+        } else if (input.equals("3")) {
+            viewAndEditPlayers(team);
+        } else if (input.equals("4")) {
+            comparePlayersPrompt(team);
+        } else if (input.equals("5")) {
+            caseFiveProcessEditCommands(team);
+        } else if (input.equals("6")) {
+            caseSixProcessEditCommands(team);
+        } else if (input.equals("7")) {
+            caseSevenProcessEditCommands(team);
+        } else {
+            System.out.println("Invalid input. Please try again.");
         }
+    }
+
+    // EFFECTS: processes the user input for the edit team menu (case 5)
+    private void caseFiveProcessEditCommands(Team team) {
+        team.incrementWins();
+        System.out.println("Wins incremented successfully!");
+    }
+
+    // EFFECTS: processes the user input for the edit team menu (case 6)
+    private void caseSixProcessEditCommands(Team team) {
+        team.incrementLosses();
+        System.out.println("Losses incremented successfully!");
+    }
+
+    // EFFECTS: processes the user input for the edit team menu (case 7)
+    private void caseSevenProcessEditCommands(Team team) {
+        team.incrementDraws();
+        System.out.println("Draws incremented successfully!");
     }
 
     // MODIFIES: this
@@ -193,34 +219,32 @@ public class StatisticTracker {
             System.out.println("Not enough players to compare.");
             return;
         }
-
-        // Display all players to select
+    
         System.out.println("Select two players to compare:");
         for (int i = 0; i < team.getPlayers().size(); i++) {
             System.out.println((i + 1) + ": " + team.getPlayers().get(i).getName());
         }
-
+    
         try {
             System.out.println("Enter the number of the first player:");
             int player1Index = Integer.parseInt(this.input.nextLine()) - 1;
-
             System.out.println("Enter the number of the second player:");
             int player2Index = Integer.parseInt(this.input.nextLine()) - 1;
-
-            if (player1Index >= 0 && player1Index < team.getPlayers().size() 
-                    && player2Index >= 0 && player2Index < team.getPlayers().size() 
-                    && player1Index != player2Index) {
-
+    
+            if (isValidSelection(player1Index, player2Index, team.getPlayers().size())) {
                 Player player1 = team.getPlayers().get(player1Index);
                 Player player2 = team.getPlayers().get(player2Index);
                 comparePlayers(player1, player2);
-
             } else {
                 System.out.println("Invalid player selection. Try again.");
             }
         } catch (NumberFormatException e) {
             System.out.println("Invalid input. Please enter a number.");
         }
+    }
+    
+    private boolean isValidSelection(int index1, int index2, int size) {
+        return index1 >= 0 && index1 < size && index2 >= 0 && index2 < size && index1 != index2;
     }
 
     // EFFECTS: compare two players
@@ -290,13 +314,11 @@ public class StatisticTracker {
             Player player = players.get(currentPlayerIndex);
             printPlayerDetails(player);
             printSeparator();
-            System.out.println("Edit player " + (currentPlayerIndex + 1) + " of " + players.size());
-            printEditPlayerMenu();
-            System.out.println("\nPress 'q' to quit.");
+            printEditPlayerMenu(currentPlayerIndex, players);
             input = this.input.nextLine().trim();
     
             if (input.equalsIgnoreCase("q")) {
-                break; // Exit the loop correctly
+                break;
             } else if (input.equals("8")) {
                 currentPlayerIndex = (currentPlayerIndex - 1 + players.size()) % players.size();
             } else if (input.equals("9")) {
@@ -309,7 +331,8 @@ public class StatisticTracker {
     
 
     // EFFECTS: print edit player menu
-    private void printEditPlayerMenu() {
+    private void printEditPlayerMenu(int currentPlayerIndex, List<Player> players) {
+        System.out.println("Edit player " + (currentPlayerIndex + 1) + " of " + players.size());
         System.out.println("1. Increment minutes played");
         System.out.println("2. Increment total goals");
         System.out.println("3. Increment total assists");
@@ -319,49 +342,75 @@ public class StatisticTracker {
         System.out.println("7. Toggle injured status");
         System.out.println("8. Previous player");
         System.out.println("9. Next Player");
+        System.out.println("\nPress 'q' to quit.");
     }
 
     // EFFECTS: processes the user input for the edit player menu
     private void processEditPlayerCommands(String input, Player player) {
-        switch (input) {
-            case "1":
-                System.out.println("Enter the number of minutes played:");
-                int minPlayed = Integer.parseInt(this.input.nextLine());
-                player.addMinPlayed(minPlayed);
-                System.out.println("Minutes played incremented successfully!");
-                break;
-            case "2":
-                player.addGoal();
-                System.out.println("Total goals incremented successfully!");
-                break;
-            case "3":
-                player.addAssist();
-                System.out.println("Total assists incremented successfully!");
-                break;
-            case "4":
-                player.addAppearances();
-                System.out.println("Appearances incremented successfully!");
-                break;
-            case "5":
-                player.addYellowCards();
-                System.out.println("Yellow cards incremented successfully!");
-                break;
-            case "6":
-                player.addRedCards();
-                System.out.println("Red cards incremented successfully!");
-                break;
-            case "7":
-                player.setIsInjured();
-                System.out.println("Injured status toggled successfully!");
-                break;
-            default:
-                System.out.println("Invalid input. Please try again.");
-                break;
+        if (input.equals("1")) {
+            processIncrementMinutesPlayed(player);
+        } else if (input.equals("2")) {
+            processIncrementGoals(player);
+        } else if (input.equals("3")) {
+            processIncrementAssists(player);
+        } else if (input.equals("4")) {
+            processIncrementAppearances(player);
+        } else if (input.equals("5")) {
+            processIncrementYellowCards(player);
+        } else if (input.equals("6")) {
+            processIncrementRedCards(player);
+        } else if (input.equals("7")) {
+            toggleInjuredStatus(player);
+        } else {
+            System.out.println("Invalid input. Please try again.");
         }
     }
-    
 
-    // EFFECTS: print the player details
+    // EFFECTS: processes the user input for incrementing player's minutes played
+    private void processIncrementMinutesPlayed(Player player) {
+        System.out.println("Enter the number of minutes played:");
+        int minPlayed = Integer.parseInt(this.input.nextLine());
+        player.addMinPlayed(minPlayed);
+        System.out.println("Minutes played incremented successfully!");
+    }
+
+    // EFFECTS: processes the user input for incrementing player's goals
+    private void processIncrementGoals(Player player) {
+        player.addGoal();
+        System.out.println("Total goals incremented successfully!");
+    }
+
+    // EFFECTS: processes the user input for incrementing player's assists
+    private void processIncrementAssists(Player player) {
+        player.addAssist();
+        System.out.println("Total assists incremented successfully!");
+    }
+
+    // EFFECTS: processes the user input for incrementing player's appearances
+    private void processIncrementAppearances(Player player) {
+        player.addAppearances();
+        System.out.println("Appearances incremented successfully!");
+    }
+
+    // EFFECTS: processes the user input for incrementing player's yellow cards
+    private void processIncrementYellowCards(Player player) {
+        player.addYellowCards();
+        System.out.println("Yellow cards incremented successfully!");
+    }
+
+    // EFFECTS: processes the user input for incrementing player's red cards
+    private void processIncrementRedCards(Player player) {
+        player.addRedCards();
+        System.out.println("Red cards incremented successfully!");
+    }
+
+    // EFFECTS: processes the user input for toggling player's injured status
+    private void toggleInjuredStatus(Player player) {
+        player.setIsInjured();
+        System.out.println("Injured status toggled successfully!");
+    }
+    
+    // EFFECTS: print the player statistic details
     private void printPlayerDetails(Player player) {
         System.out.println("Name: " + player.getName());
         System.out.println("Position: " + player.getPosition());
