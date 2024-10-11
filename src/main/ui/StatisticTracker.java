@@ -11,16 +11,12 @@ public class StatisticTracker {
     private List<Team> teams;
     private Scanner input;
     private boolean running;
-    
-    // EFFECTS: creates an instance of the StatisticTracker console ui application
+
+    // EFFECTS: creates an instance of the StatisticTracker console UI application
     public StatisticTracker() {
         init();
-
         System.out.println("Hello Coach! What do you want to do?");
-
-        while (this.running) {
-            appRunning();
-        }
+        run();  // Run the application
     }
 
     // MODIFIES: this
@@ -31,19 +27,21 @@ public class StatisticTracker {
         this.running = true;
     }
 
-    // EFFECTS: runs the StatisticTracker application
-    private void appRunning() {
-        startMenu();
-        String input = this.input.nextLine();
-        processMenuCommands(input);
+    // EFFECTS: runs the StatisticTracker application in a loop
+    public void run() {
+        while (this.running) {
+            mainMenu();
+        }
     }
 
-    // MODIFIES: this
-    // EFFECTS: starts the StatisticTracker menu
-    private void startMenu() {
+    // EFFECTS: displays the main menu and processes user input
+    private void mainMenu() {
         System.out.println("1. Create a new team");
         System.out.println("2. View all teams");
-        System.out.println("3. Exit");
+        System.out.println("3. Edit a team");
+        System.out.println("4. Exit");
+        String input = this.input.nextLine();
+        processMenuCommands(input);
     }
 
     // MODIFIES: this
@@ -57,6 +55,9 @@ public class StatisticTracker {
                 viewTeams();
                 break;
             case "3":
+                editTeam();
+                break;
+            case "4":
                 this.running = false;
                 break;
             default:
@@ -84,21 +85,20 @@ public class StatisticTracker {
         if (this.teams.isEmpty()) {
             System.out.println("No teams found.");
         } else {
-            Scanner scanner = new Scanner(System.in);
             int currentTeamIndex = 0;
             String input = "";
-    
+
             while (!input.equals("q")) {
-                // Display current team
                 Team team = this.teams.get(currentTeamIndex);
                 printTeamDetails(team);
-    
-                // Prompt user for action
-                System.out.println("\nPress ENTER to view next team, or 'q' to quit.");
-                input = scanner.nextLine();
-    
+
+                printSeparator();
+                System.out.println("Viewing team " + (currentTeamIndex + 1) + " of " + this.teams.size());
+                System.out.println("\nPress ENTER to view the next team, 'q' to return to the main menu.");
+                printSeparator();
+                input = this.input.nextLine();
+
                 if (input.equals("")) {
-                    // Move to the next team
                     currentTeamIndex = (currentTeamIndex + 1) % this.teams.size();
                 }
             }
@@ -114,14 +114,116 @@ public class StatisticTracker {
         System.out.println("Draws: " + team.getTotalDraws());
         System.out.println("Average age: " + team.getAverageAge());
         System.out.println("Average height: " + team.getAverageHeight());
-        System.out.println("Players:");
-        for (Player player : team.getPlayers()) {
-            System.out.println("Name: " + player.getName());
-            System.out.println("Position: " + player.getPosition());
-            System.out.println("Jersey number: " + player.getJerseyNumber());
+        System.out.println("Players (Available):");
+        for (Player player : team.getAvailablePlayers()) {
+            System.out.println(player.getName() + "/" + player.getPosition() + "/" + player.getJerseyNumber());
+        }
+        System.out.println("Players (Injured):");
+        for (Player player : team.getInjuredPlayers()) {
+            System.out.println(player.getName() + "/" + player.getPosition() + "/" + player.getJerseyNumber());
         }
     }
-    
 
-    
+    // EFFECTS: print a separator
+    private void printSeparator() {
+        System.out.println("--------------------------------------------------");
+    }
+
+    // MODIFIES: this
+    // EFFECTS: edits a team
+    private void editTeam() {
+        if (this.teams.isEmpty()) {
+            System.out.println("No teams found.");
+        } else {
+            int currentTeamIndex = 0;
+            String input = "";
+
+            while (!input.equals("q")) {
+                Team team = this.teams.get(currentTeamIndex);
+                printTeamDetails(team);
+
+                printSeparator();
+                System.out.println("Edit team " + (currentTeamIndex + 1) + " of " + this.teams.size());
+                printEditTeamMenu();
+                printSeparator();
+                input = this.input.nextLine();
+
+                if (input.equals("6")) {
+                    break;
+                }
+
+                processEditCommands(input, team);
+            }
+        }
+    }
+
+    private void printEditTeamMenu() {
+        System.out.println("1. Add player");
+        System.out.println("2. Remove player");
+        System.out.println("3. Increment wins");
+        System.out.println("4. Increment losses");
+        System.out.println("5. Increment draws");
+        System.out.println("6. Return to main menu");
+    }
+
+    // MODIFIES: this
+    // EFFECTS: processes the user input for the edit team menu
+    private void processEditCommands(String input, Team team) {
+        switch (input) {
+            case "1":
+                addPlayer(team);
+                break;
+            case "2":
+                removePlayer(team);
+                break;
+            case "3":
+                team.incrementWins();
+                System.out.println("Wins incremented successfully!");
+                break;
+            case "4":
+                team.incrementLosses();
+                System.out.println("Losses incremented successfully!");
+                break;
+            case "5":
+                team.incrementDraws();
+                System.out.println("Draws incremented successfully!");
+                break;
+            default:
+                System.out.println("Invalid input. Please try again.");
+                break;
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: adds a player to the team
+    private void addPlayer(Team team) {
+        System.out.println("Enter the player name:");
+        String playerName = this.input.nextLine();
+        System.out.println("Enter the player position:");
+        String playerPosition = this.input.nextLine();
+        System.out.println("Enter the player age:");
+        int playerAge = Integer.parseInt(this.input.nextLine());
+        System.out.println("Enter the player height:");
+        int playerHeight = Integer.parseInt(this.input.nextLine());
+        System.out.println("Enter the player jersey number:");
+        int playerJerseyNumber = Integer.parseInt(this.input.nextLine());
+
+        Player player = new Player(playerName, playerPosition, playerAge, playerHeight, playerJerseyNumber);
+        team.addPlayer(player);
+
+        System.out.println("Player added successfully!");
+    }
+
+    // MODIFIES: this
+    // EFFECTS: removes a player from the team
+    private void removePlayer(Team team) {
+        System.out.println("Enter the player name:");
+        String playerName = this.input.nextLine();
+
+        if (team.removePlayer(playerName)) {
+            System.out.println("Player removed successfully!");
+        } else {
+            System.out.println("Player not found.");
+        }
+    }
 }
