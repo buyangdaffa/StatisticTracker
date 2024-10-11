@@ -1,10 +1,13 @@
 package model;
 
-// This class represents a player in a soccer team that have attributes such as 
-// name, position, age, height and jersey number and have statistics record such as
-// minutes played, total goals, assists, appearances, yellow cards, red cards, injury status,
-// while also keep tracks the win, draw, loss record that align with their team records.
-
+/**
+ * This class represents a player in a soccer team.
+ * 
+ * Each Player object stores attributes such as name, position, age, height, jersey number, 
+ * and records statistics including minutes played, goals, assists, appearances, 
+ * yellow cards, red cards, and injury status. Additionally, it tracks the player's win, 
+ * loss, and draw records, which align with their team's performance.
+ */
 public class Player {
     private String name;
     private String position;
@@ -22,9 +25,13 @@ public class Player {
     private int losses;
     private int draws;
 
-    // REQUIRES: age > 0, height > 0
-    // MODIFIES: this
-    // EFFECTS: constructs a player with the given name, position, age, height, and jersey number
+    /**
+     * REQUIRES: age > 0, height > 0
+     * MODIFIES: this
+     * EFFECTS: constructs a player with the given name, position, age, height, and jersey number,
+     *          and initializes all statistical attributes (goals, assists, appearances, etc.) to 0,
+     *          and sets the injury status to false.
+     */
     public Player(String name, String position, int age, int height, int jerseyNumber) {
         this.name = name;
         this.position = position;
@@ -62,7 +69,7 @@ public class Player {
     public int getJerseyNumber() {
         return this.jerseyNumber;
     }
-    
+
     public int getMinPlayed() {
         return this.minPlayed;
     }
@@ -103,68 +110,91 @@ public class Player {
         return this.draws;
     }
 
-    // MODIFIES: this
-    // EFFECTS: adds the number of minutes played
+    /**
+     * REQUIRES: minPlayed >= 0
+     * MODIFIES: this
+     * EFFECTS: adds the specified number of minutes to the player's total minutes played.
+     */
     public void addMinPlayed(int minPlayed) {
         this.minPlayed += minPlayed;
     }
 
-    // MODIFIES: this
-    // EFFECTS: increment the total number of goals scored
+    /**
+     * MODIFIES: this
+     * EFFECTS: increments the total number of goals scored by the player by 1.
+     */
     public void addGoal() {
         this.totalGoals++;
     }
 
-    // MODIFIES: this
-    // EFFECTS: increment the total number of assists
+    /**
+     * MODIFIES: this
+     * EFFECTS: increments the total number of assists by 1.
+     */
     public void addAssist() {
         this.totalAssists++;
     }
 
-    // MODIFIES: this
-    // EFFECTS: increment the total number of appearances
+    /**
+     * MODIFIES: this
+     * EFFECTS: increments the total number of appearances by 1.
+     */
     public void addAppearances() {
         this.appearances++;
     }
 
-    // MODIFIES: this
-    // EFFECTS: adds the total number of yellow cards
+    /**
+     * MODIFIES: this
+     * EFFECTS: increments the total number of yellow cards by 1.
+     */
     public void addYellowCards() {
         this.yellowCards++;
     }
 
-    // MODIFIES: this
-    // EFFECTS: adds the total number of red cards
+    /**
+     * MODIFIES: this
+     * EFFECTS: increments the total number of red cards by 1.
+     */
     public void addRedCards() {
         this.redCards++;
     }
 
-    // MODIFIES: this
-    // EFFECTS: sets the player as injured
+    /**
+     * MODIFIES: this
+     * EFFECTS: toggles the player's injury status between true (injured) and false (available).
+     */
     public void setIsInjured() {
         this.isInjured = !this.isInjured;
     }
 
-    // MODIFIES: this
-    // EFFECTS: increments the number of wins by 1
+    /**
+     * MODIFIES: this
+     * EFFECTS: increments the player's win count by 1.
+     */
     public void incrementWins() {
         this.wins++;
     }
 
-    // MODIFIES: this
-    // EFFECTS: increments the number of losses by 1
+    /**
+     * MODIFIES: this
+     * EFFECTS: increments the player's loss count by 1.
+     */
     public void incrementLosses() {
         this.losses++;
     }
 
-    // MODIFIES: this
-    // EFFECTS: increments the number of draws by 1
+    /**
+     * MODIFIES: this
+     * EFFECTS: increments the player's draw count by 1.
+     */
     public void incrementDraws() {
         this.draws++;
     }
 
+    /**
+     * EFFECTS: returns true if the player is available (not injured), false otherwise.
+     */
     public boolean isAvailable() {
         return !this.isInjured;
-    } 
-    
+    }
 }
