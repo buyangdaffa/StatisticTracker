@@ -135,9 +135,9 @@ public class Player {
     }
 
     // MODIFIES: this
-    // EFFECTS: sets the player as injured, only works to set the player from healthy to injured not the other way
+    // EFFECTS: sets the player as injured
     public void setIsInjured() {
-        this.isInjured = true;
+        this.isInjured = !this.isInjured;
     }
 
     // MODIFIES: this
