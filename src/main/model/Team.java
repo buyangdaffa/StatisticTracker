@@ -3,6 +3,9 @@ package model;
 import java.util.List;
 import java.util.ArrayList;
 
+// This class represents a soccer Team that have attributes such as team name, coach name, list of players, 
+// total wins, total draws, and total loss.
+
 public class Team {
     private String teamName;
     private String coachName;

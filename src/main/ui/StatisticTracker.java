@@ -7,6 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+// This is an application which allows the user to create new teams, add players to those teams, 
+// remove players from the teams, compare two different players, and view detailed statistics of the teams and players.
+// Then, this application also allows the user to record the statistics in team-level as well as player-level.
+
+
 public class StatisticTracker {
     private List<Team> teams;
     private Scanner input;
@@ -17,8 +22,7 @@ public class StatisticTracker {
         init();
         printSeparator();
         System.out.println("Hello Coach! What do you want to do?");
-        printSeparator();
-        run();  // Run the application
+        run(); 
     }
 
     // MODIFIES: this
