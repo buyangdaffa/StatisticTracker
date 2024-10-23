@@ -183,12 +183,12 @@ public class Team implements Writable {
     // EFFECTS: returns this team as a JSON object
     public JSONObject toJson() {
         // TODO: Implement this method
-        return new JSONObject();
+        return null;
     }
     
     // EFFECTS: returns players in this team as a JSON array
     private JSONArray playersToJson() {
         // TODO: Implement this method
-        return new JSONArray();
+        return null;
     }
 }

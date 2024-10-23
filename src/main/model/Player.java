@@ -205,6 +205,6 @@ public class Player implements Writable {
     // EFFECTS: returns a JSON object representing the player
     public JSONObject toJson() {
         // TODO: Implement this method
-        return new JSONObject();
+        return null;
     }
 }
