@@ -3,6 +3,11 @@ package ui;
 import model.Player;
 import model.Team;
 
+import persistance.JsonReader;
+import persistance.JsonWriter;
+
+import java.io.FileNotFoundException;
+import java.io.IOException; 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -13,13 +18,18 @@ import java.util.Scanner;
 
 
 public class StatisticTracker {
+    private static final String JSON_STORE = "./data/teams.json";
     private List<Team> teams;
     private Scanner input;
     private boolean running;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: creates an instance of the StatisticTracker console UI application
     public StatisticTracker() {
         init();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         printSeparator();
         System.out.println("Hello Coach! What do you want to do?");
         run(); 
@@ -45,7 +55,9 @@ public class StatisticTracker {
         printSeparator();
         System.out.println("1. Create a new team");
         System.out.println("2. View and edit all teams");
-        System.out.println("3. Exit");
+        System.out.println("3. Load teams from file");
+        System.out.println("4. Save teams to file");
+        System.out.println("5. Exit");
         printSeparator();
         String input = this.input.nextLine();
         processMenuCommands(input);
@@ -62,6 +74,12 @@ public class StatisticTracker {
                 viewTeams();
                 break;
             case "3":
+                loadTeamsFromFile();
+                break;
+            case "4":
+                saveTeamsToFile();
+                break;
+            case "5":
                 this.running = false;
                 break;
             default:
@@ -431,5 +449,28 @@ public class StatisticTracker {
         System.out.println("Wins: " + player.getWins());
         System.out.println("Losses: " + player.getLosses());
         System.out.println("Draws: " + player.getDraws());
+    }
+
+    // EFFECTS: saves teams to file
+    private void saveTeamsToFile() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(this.teams); // Write the list of teams
+            jsonWriter.close();
+            System.out.println("Teams saved to file successfully!");
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to save teams to file: " + e.getMessage());
+        }
+    }
+    
+    // MODIFIES: this
+    // EFFECTS: loads teams from file
+    private void loadTeamsFromFile() {
+        try {
+            this.teams = jsonReader.read(); // Read the list of teams
+            System.out.println("Teams loaded from file successfully!");
+        } catch (IOException e) {
+            System.out.println("Unable to load teams from file: " + e.getMessage());
+        }
     }
 }
