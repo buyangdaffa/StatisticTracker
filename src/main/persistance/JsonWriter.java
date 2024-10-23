@@ -21,24 +21,28 @@ public class JsonWriter {
     // EFFECTS: opens writer; throws FileNotFoundException if destination file cannot
     // be opened for writing
     public void open() throws FileNotFoundException {
-        // TODO: Implement this method
+        writer = new PrintWriter(new File(destination));
     }
 
     // MODIFIES: this
     // EFFECTS: writes JSON representation of list of teams to file
     public void write(List<Team> teams) {
-        // TODO: Implement this method
+        JSONArray jsonArray = new JSONArray();
+        for (Team team : teams) {
+            jsonArray.put(team.toJson());
+        }
+        saveToFile(jsonArray.toString(TAB));
     }
 
     // MODIFIES: this
     // EFFECTS: closes writer
     public void close() {
-        // TODO: Implement this method
+        writer.close();
     }
 
     // MODIFIES: this
     // EFFECTS: writes string to file
     private void saveToFile(String json) {
-        // TODO: Implement this method
+        writer.print(json);
     }
 }

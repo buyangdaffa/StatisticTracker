@@ -204,7 +204,22 @@ public class Player implements Writable {
     @Override
     // EFFECTS: returns a JSON object representing the player
     public JSONObject toJson() {
-        // TODO: Implement this method
-        return null;
+        JSONObject json = new JSONObject();
+        json.put("name", this.name);
+        json.put("position", this.position);
+        json.put("age", this.age);
+        json.put("height", this.height);
+        json.put("jerseyNumber", this.jerseyNumber);
+        json.put("minPlayed", this.minPlayed);
+        json.put("totalGoals", this.totalGoals);
+        json.put("totalAssists", this.totalAssists);
+        json.put("appearances", this.appearances);
+        json.put("yellowCards", this.yellowCards);
+        json.put("redCards", this.redCards);
+        json.put("isInjured", this.isInjured);
+        json.put("wins", this.wins);
+        json.put("losses", this.losses);
+        json.put("draws", this.draws);
+        return json;
     }
 }

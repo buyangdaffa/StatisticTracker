@@ -182,13 +182,23 @@ public class Team implements Writable {
     @Override
     // EFFECTS: returns this team as a JSON object
     public JSONObject toJson() {
-        // TODO: Implement this method
-        return null;
+        JSONObject json = new JSONObject();
+        json.put("teamName", this.teamName);
+        json.put("coachName", this.coachName);
+        json.put("totalWins", this.totalWins);
+        json.put("totalLosses", this.totalLosses);
+        json.put("totalDraws", this.totalDraws);
+        json.put("players", playersToJson());
+        return json;
     }
-    
+
     // EFFECTS: returns players in this team as a JSON array
     private JSONArray playersToJson() {
-        // TODO: Implement this method
-        return null;
+        JSONArray jsonArray = new JSONArray();
+
+        for (Player player : this.players) {
+            jsonArray.put(player.toJson());
+        }
+        return jsonArray;
     }
 }
