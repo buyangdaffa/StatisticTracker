@@ -1,0 +1,43 @@
+[{
+    "teamName": "Team1",
+    "coachName": "Coach1",
+    "totalWins": 1,
+    "totalLosses": 2,
+    "players": [
+        {
+            "wins": 1,
+            "minPlayed": 90,
+            "losses": 2,
+            "redCards": 1,
+            "appearances": 3,
+            "totalAssists": 2,
+            "isInjured": false,
+            "name": "Player1",
+            "jerseyNumber": 9,
+            "draws": 3,
+            "position": "CF",
+            "totalGoals": 3,
+            "yellowCards": 1,
+            "age": 20,
+            "height": 180
+        },
+        {
+            "wins": 1,
+            "minPlayed": 90,
+            "losses": 2,
+            "redCards": 1,
+            "appearances": 3,
+            "totalAssists": 1,
+            "isInjured": true,
+            "name": "Player2",
+            "jerseyNumber": 1,
+            "draws": 3,
+            "position": "GK",
+            "totalGoals": 1,
+            "yellowCards": 2,
+            "age": 21,
+            "height": 190
+        }
+    ],
+    "totalDraws": 3
+}]
