@@ -1,5 +1,8 @@
 package model;
 
+import org.json.JSONObject;
+import persistance.Writable;
+
 /**
  * This class represents a player in a soccer team.
  * 
@@ -8,7 +11,7 @@ package model;
  * yellow cards, red cards, and injury status. Additionally, it tracks the player's win, 
  * loss, and draw records, which align with their team's performance.
  */
-public class Player {
+public class Player implements Writable {
     private String name;
     private String position;
     private int age;
@@ -196,5 +199,12 @@ public class Player {
      */
     public boolean isAvailable() {
         return !this.isInjured;
+    }
+
+    @Override
+    // EFFECTS: returns a JSON object representing the player
+    public JSONObject toJson() {
+        // TODO: Implement this method
+        return new JSONObject();
     }
 }

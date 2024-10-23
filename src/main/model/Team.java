@@ -3,6 +3,10 @@ package model;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistance.Writable;
+
 /**
  * This class represents a soccer Team.
  * 
@@ -11,7 +15,7 @@ import java.util.ArrayList;
  * The team also has methods to add and remove players, increment match results, 
  * and compute the average age and height of the players.
  */
-public class Team {
+public class Team implements Writable {
     private String teamName;
     private String coachName;
     private List<Player> players;
@@ -173,5 +177,18 @@ public class Team {
             }
         }
         return injuredPlayers;
+    }
+
+    @Override
+    // EFFECTS: returns this team as a JSON object
+    public JSONObject toJson() {
+        // TODO: Implement this method
+        return new JSONObject();
+    }
+    
+    // EFFECTS: returns players in this team as a JSON array
+    private JSONArray playersToJson() {
+        // TODO: Implement this method
+        return new JSONArray();
     }
 }
