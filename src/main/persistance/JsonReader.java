@@ -14,6 +14,15 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+/**
+ * Represents a reader that reads JSON representation of teams from a file.
+ * 
+ * The JsonReader class provides methods to read a JSON file and parse its contents
+ * into a list of Team objects. Each Team object can contain multiple Player objects.
+ * The class handles the conversion of JSON data into Java objects, ensuring that
+ * all relevant fields are correctly populated.
+ */
+
 public class JsonReader {
     private String source;
 

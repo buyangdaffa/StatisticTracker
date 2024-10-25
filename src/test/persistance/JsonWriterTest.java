@@ -9,6 +9,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// Test for persistance in JsonWriter class
+
 public class JsonWriterTest extends JsonTest {
 
     @Test

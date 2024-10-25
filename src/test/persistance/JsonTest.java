@@ -5,6 +5,8 @@ import model.Team;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+// JsonTest class to test the JsonReader and JsonWriter classes
+
 public class JsonTest {
     protected void checkPlayer(String name, String position, int age, int height, int jerseyNumber, 
                                int minPlayed, int totalGoals, int totalAssists, int appearances, 

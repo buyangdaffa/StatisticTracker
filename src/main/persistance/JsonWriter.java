@@ -6,6 +6,14 @@ import org.json.JSONArray;
 import java.io.*;
 import java.util.List;
 
+/**
+ * Represents a writer that writes JSON representation of teams to a file.
+ * 
+ * The JsonWriter class provides methods to open a file for writing, write a list of Team objects
+ * to the file in JSON format, and close the file. The class ensures that the JSON data is correctly
+ * formatted and written to the specified destination file.
+ */
+
 // Represents a writer that writes JSON representation of teams to file
 public class JsonWriter {
     private static final int TAB = 4;
