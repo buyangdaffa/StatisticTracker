@@ -1,1 +1,88 @@
-[]
+[
+    {
+        "teamName": "Indonesia",
+        "coachName": "Shin Tae Yong",
+        "totalWins": 0,
+        "totalLosses": 0,
+        "players": [
+            {
+                "wins": 0,
+                "minPlayed": 90,
+                "losses": 0,
+                "redCards": 0,
+                "appearances": 1,
+                "totalAssists": 2,
+                "isInjured": false,
+                "name": "Thom Haye",
+                "jerseyNumber": 19,
+                "draws": 0,
+                "position": "MF",
+                "totalGoals": 0,
+                "yellowCards": 1,
+                "age": 28,
+                "height": 185
+            },
+            {
+                "wins": 0,
+                "minPlayed": 90,
+                "losses": 0,
+                "redCards": 0,
+                "appearances": 1,
+                "totalAssists": 0,
+                "isInjured": true,
+                "name": "Rafael Struick",
+                "jerseyNumber": 9,
+                "draws": 0,
+                "position": "CF",
+                "totalGoals": 3,
+                "yellowCards": 0,
+                "age": 20,
+                "height": 185
+            }
+        ],
+        "totalDraws": 0
+    },
+    {
+        "teamName": "Ahay",
+        "coachName": "Buyang",
+        "totalWins": 0,
+        "totalLosses": 0,
+        "players": [
+            {
+                "wins": 0,
+                "minPlayed": 90,
+                "losses": 0,
+                "redCards": 0,
+                "appearances": 1,
+                "totalAssists": 1,
+                "isInjured": true,
+                "name": "Rayya",
+                "jerseyNumber": 8,
+                "draws": 0,
+                "position": "MF",
+                "totalGoals": 0,
+                "yellowCards": 0,
+                "age": 19,
+                "height": 172
+            },
+            {
+                "wins": 0,
+                "minPlayed": 90,
+                "losses": 0,
+                "redCards": 0,
+                "appearances": 1,
+                "totalAssists": 0,
+                "isInjured": true,
+                "name": "Raihan",
+                "jerseyNumber": 9,
+                "draws": 0,
+                "position": "CF",
+                "totalGoals": 2,
+                "yellowCards": 0,
+                "age": 21,
+                "height": 170
+            }
+        ],
+        "totalDraws": 0
+    }
+]
