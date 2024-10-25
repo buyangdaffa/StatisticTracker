@@ -11,6 +11,9 @@ import org.json.JSONObject;
  * 
  * Classes that implement this interface must provide an implementation of the
  * toJson method, which returns a JSONObject representation of the object.
+ * 
+ * Referenced from the JsonSerialization Demo
+ * https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
  */
 
 public interface Writable {

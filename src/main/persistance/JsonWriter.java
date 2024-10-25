@@ -12,6 +12,8 @@ import java.util.List;
  * The JsonWriter class provides methods to open a file for writing, write a list of Team objects
  * to the file in JSON format, and close the file. The class ensures that the JSON data is correctly
  * formatted and written to the specified destination file.
+ * Referenced from the JsonSerialization Demo
+ * https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
  */
 
 // Represents a writer that writes JSON representation of teams to file

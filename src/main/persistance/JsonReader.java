@@ -21,6 +21,8 @@ import org.json.JSONObject;
  * into a list of Team objects. Each Team object can contain multiple Player objects.
  * The class handles the conversion of JSON data into Java objects, ensuring that
  * all relevant fields are correctly populated.
+ * Referenced from the JsonSerialization Demo
+ * https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
  */
 
 public class JsonReader {

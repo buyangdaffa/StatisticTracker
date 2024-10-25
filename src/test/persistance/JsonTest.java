@@ -6,6 +6,8 @@ import model.Team;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 // JsonTest class to test the JsonReader and JsonWriter classes
+// Referenced from the JsonSerialization Demo
+// https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 
 public class JsonTest {
     protected void checkPlayer(String name, String position, int age, int height, int jerseyNumber, 
