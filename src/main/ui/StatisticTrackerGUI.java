@@ -9,6 +9,8 @@ import persistance.JsonWriter;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -311,15 +313,54 @@ public class StatisticTrackerGUI {
 
     // MODIFIES: this
     // EFFECTS: Opens a dialog to create a new team and adds it to the list of teams.
-    private void showCreateTeamDialog() {}
+    private void showCreateTeamDialog() {
+        JTextField teamNameField = new JTextField();
+        JTextField coachNameField = new JTextField();
+
+        Object[] message = {
+            "Team Name:", teamNameField,
+            "Coach Name:", coachNameField
+        };
+
+        int option = JOptionPane.showConfirmDialog(frame, message, "Create New Team", JOptionPane.OK_CANCEL_OPTION);
+        if (option == JOptionPane.OK_OPTION) {
+            String teamName = teamNameField.getText();
+            String coachName = coachNameField.getText();
+
+            if (!teamName.isEmpty() && !coachName.isEmpty()) {
+                Team team = new Team(teamName, coachName);
+                teams.add(team);
+                JOptionPane.showMessageDialog(frame, "Team created successfully!", 
+                        "Success", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(frame, "Both fields must be filled!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
 
     // MODIFIES: this
     // EFFECTS: Loads teams from a JSON file.
-    private void loadTeams() {}
+    private void loadTeams() {
+        try {
+            this.teams = jsonReader.read();
+            JOptionPane.showMessageDialog(frame, "Teams loaded from file successfully!");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(frame, "Unable to load teams from file: " + e.getMessage());
+        }
+    }
 
     // MODIFIES: this
     // EFFECTS: Saves teams to a JSON file.
-    private void saveTeams() {}
+    private void saveTeams() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(this.teams);
+            jsonWriter.close();
+            JOptionPane.showMessageDialog(frame, "Teams saved to file successfully!");
+        } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(frame, "Unable to save teams to file: " + e.getMessage());
+        }
+    }
 
     // MODIFIES: this
     // EFFECTS: Updates the player panel with the latest information.
