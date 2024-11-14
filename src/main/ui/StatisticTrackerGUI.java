@@ -64,6 +64,7 @@ public class StatisticTrackerGUI {
         mainPanel = new JPanel(cardLayout);
 
         mainPanel.add(mainMenuPanel(), "MainMenu");
+        mainPanel.add(teamPanel(), "Teams");
 
         frame.add(mainPanel);
         frame.setVisible(true);
@@ -111,17 +112,38 @@ public class StatisticTrackerGUI {
 
     // EFFECTS: Creates and returns a panel for managing teams.
     private JPanel teamPanel() {
-        return null;
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.add(createHeaderPanel(), BorderLayout.NORTH);
+        // panel.add(createScrollPane(), BorderLayout.CENTER);
+        panel.add(createButtonPanel(), BorderLayout.SOUTH);
+        return panel;
     }
 
     // EFFECTS: Creates and returns the header panel for the team panel.
     private JPanel createHeaderPanel() {
-        return null;
+        JLabel label = new JLabel("Teams", JLabel.CENTER);
+        label.setFont(new Font("Arial", Font.BOLD, 18));
+        JPanel headerPanel = new JPanel(new BorderLayout());
+        headerPanel.add(label, BorderLayout.CENTER);
+        return headerPanel;
     }
 
     // EFFECTS: Creates and returns a scrollable panel for team and player information.
     private JScrollPane createScrollPane() {
-        return null;
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
+    
+        if (teams.isEmpty()) {
+            JLabel noTeamsLabel = new JLabel("No teams available", JLabel.CENTER);
+            noTeamsLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+            centerPanel.add(noTeamsLabel);
+        } else {
+            // centerPanel.add(createTeamInfoPanel());
+            centerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+            // centerPanel.add(createPlayerPanel());
+        }
+    
+        return new JScrollPane(centerPanel);
     }
 
     // REQUIRES: teams is not empty, and teamIndex is a valid index in teams.
@@ -138,13 +160,39 @@ public class StatisticTrackerGUI {
 
     // EFFECTS: Creates and returns a panel containing buttons for managing teams and players.
     private JPanel createButtonPanel() {
-        return null;
+        JPanel buttonPanelSouth = new JPanel();
+        buttonPanelSouth.setLayout(new BoxLayout(buttonPanelSouth, BoxLayout.Y_AXIS));
+    
+        JPanel row1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JPanel row2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JPanel row3 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+    
+        row1.add(createButton("Increment Wins", e -> incrementWins()));
+        row1.add(createButton("Increment Losses", e -> incrementLosses()));
+        row1.add(createButton("Increment Draws", e -> incrementDraws()));
+    
+        row2.add(createButton("Add Player", e -> addPlayer()));
+        row2.add(createButton("Remove Player", e -> removePlayer()));
+        row2.add(createButton("Compare Players", e -> comparePlayers()));
+        row2.add(createButton("View and Edit Player", e -> viewEditPlayer()));
+    
+        row3.add(createButton("Previous Team", e -> previousTeam()));
+        row3.add(createButton("Back to Main Menu", e -> backToMainMenu()));
+        row3.add(createButton("Next Team", e -> nextTeam()));
+    
+        buttonPanelSouth.add(row1);
+        buttonPanelSouth.add(row2);
+        buttonPanelSouth.add(row3);
+    
+        return buttonPanelSouth;
     }
 
     // REQUIRES: text is not null or empty; listener is not null.
     // EFFECTS: Creates and returns a JButton with the given text and action listener.
     private JButton createButton(String text, ActionListener listener) {
-        return null;
+        JButton button = new JButton(text);
+        button.addActionListener(listener);
+        return button;
     }
 
     // REQUIRES: teams is not empty, and teamIndex is a valid index in teams.
