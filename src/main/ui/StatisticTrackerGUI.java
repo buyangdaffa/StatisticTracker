@@ -42,21 +42,70 @@ public class StatisticTrackerGUI {
 
     // MODIFIES: this
     // EFFECTS: Initializes the GUI with default values and components.
-    public StatisticTrackerGUI() {}
+    public StatisticTrackerGUI() {
+        initializeUI();
+        teams = new ArrayList<>();
+        jsonReader = new JsonReader("data/teams.json");
+        jsonWriter = new JsonWriter("data/teams.json");
+    }
 
     // MODIFIES: this
     // EFFECTS: Sets up the main UI components for the application.
-    private void initializeUI() {}
+    private void initializeUI() {
+        frame = new JFrame("Statistic Tracker™");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(600, 900);
+        frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
+
+        cardLayout = new CardLayout();
+        mainPanel = new JPanel(cardLayout);
+
+        mainPanel.add(mainMenuPanel(), "MainMenu");
+
+        frame.add(mainPanel);
+        frame.setVisible(true);
+    }
 
     // EFFECTS: Returns the main menu panel for the application.
     private JPanel mainMenuPanel() {
-        return null;
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        ImageIcon logo = new ImageIcon("image\\logo.png");
+        JLabel logoPanel = new JLabel(logo);
+        logoPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(logoPanel);
+    
+        panel.add(Box.createRigidArea(new Dimension(0, 25)));
+    
+        addButton(panel, "Create New Team", e -> showCreateTeamDialog());
+        addButton(panel, "View and Edit Teams", e -> {
+            updateTeamPanel();
+            cardLayout.show(mainPanel, "Teams");
+        });
+        addButton(panel, "Load Teams from File", e -> loadTeams());
+        addButton(panel, "Save Teams to File", e -> saveTeams());
+        addButton(panel, "Exit", e -> System.exit(0));
+    
+        return panel;
     }
 
     // REQUIRES: panel is not null; text is not null or empty; actionListener is not null.
     // MODIFIES: panel
     // EFFECTS: Adds a button with the given text and action listener to the panel.
-    private void addButton(JPanel panel, String text, ActionListener actionListener) {}
+    private void addButton(JPanel panel, String text, ActionListener actionListener) {
+        JButton button = new JButton(text);
+        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        button.addActionListener(actionListener);
+        Dimension buttonSize = new Dimension(400, 40);
+        button.setPreferredSize(buttonSize);
+        button.setMaximumSize(buttonSize);
+        button.setMinimumSize(buttonSize);
+        button.setFont(new Font("Arial", Font.PLAIN, 24));
+        panel.add(button);
+        panel.add(Box.createRigidArea(new Dimension(0, 50)));
+    }
 
     // EFFECTS: Creates and returns a panel for managing teams.
     private JPanel teamPanel() {
@@ -281,5 +330,7 @@ public class StatisticTrackerGUI {
     private void updateTeamPanel() {}
 
     // EFFECTS: Launches the Statistic Tracker GUI application.
-    public static void main(String[] args) {}
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(StatisticTrackerGUI::new);
+    }
 }
