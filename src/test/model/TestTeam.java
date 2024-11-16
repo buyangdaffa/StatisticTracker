@@ -179,4 +179,73 @@ public class TestTeam {
         team.addPlayer(player3);
         assertEquals(0, team.getInjuredPlayers().size());
     }
+
+    @Test
+    void testComparePlayers() {
+        player1.addGoal();
+        player1.addAssist();
+        player1.addAppearances();
+        player1.addYellowCards();
+        player1.addRedCards();
+        player1.setIsInjured();
+        player2.addGoal();
+        player2.addAssist();
+        player2.addAppearances();
+        player2.addYellowCards();
+        player2.addRedCards();
+        player2.setIsInjured();
+        String expected = "Comparison between Rafael Struick and Ivar Jenner:\n\n" + "Position: Forward vs Midfielder\n"
+                + "Age: 21 vs 20\n" + "Height: 185 vs 188\n"
+                + "Jersey Number: 9 vs 18\n" + "Total Goals: 1 vs 1\n"
+                + "Total Assists: 1 vs 1\n" + "Appearances: 1 vs 1\n"
+                + "Yellow Cards: 1 vs 1\n" + "Red Cards: 1 vs 1\n"
+                + "Injured: Yes vs Yes\n";
+
+        String result = team.comparePlayers(player1, player2);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void testComparePlayersDifferentStats() {
+        player1.addGoal();
+        player1.addAssist();
+        player1.addAppearances();
+        player1.addYellowCards();
+        player1.addRedCards();
+        player2.addGoal();
+        player2.addAssist();
+        player2.addAppearances();
+        player2.addYellowCards();
+        player2.addRedCards();
+        player2.addGoal();
+        player2.addAssist();
+        player2.addAppearances();
+        player2.addYellowCards();
+        player2.addRedCards();
+        String expected = "Comparison between Rafael Struick and Ivar Jenner:\n\n" + "Position: Forward vs Midfielder\n"
+                + "Age: 21 vs 20\n" + "Height: 185 vs 188\n"
+                + "Jersey Number: 9 vs 18\n" + "Total Goals: 1 vs 2\n"
+                + "Total Assists: 1 vs 2\n" + "Appearances: 1 vs 2\n"
+                + "Yellow Cards: 1 vs 2\n" + "Red Cards: 1 vs 2\n"
+                + "Injured: No vs No\n";
+
+        String result = team.comparePlayers(player1, player2);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void testGetPlayerByName() {
+        team.addPlayer(player1);
+        team.addPlayer(player2);
+        team.addPlayer(player3);
+        assertEquals(player1, team.getPlayerByName("Rafael Struick"));
+    }
+
+    @Test
+    void testGetPlayerByNameNotFound() {
+        team.addPlayer(player1);
+        team.addPlayer(player2);
+        team.addPlayer(player3);
+        assertEquals(null, team.getPlayerByName("Alphonso Davies"));
+    }
 }
