@@ -86,6 +86,19 @@ public class Team implements Writable {
     }
 
     /**
+     * EFFECTS: returns a player from the team by their name if found, 
+     *          returns null if the player is not found.
+     */
+    public Player getPlayerByName(String playerName) {
+        for (Player player : this.players) {
+            if (player.getName().equals(playerName)) {
+                return player;
+            }
+        }
+        return null;
+    }
+
+    /**
      * MODIFIES: this
      * EFFECTS: increments the total number of wins for the team and for each player on the team.
      */
@@ -177,6 +190,32 @@ public class Team implements Writable {
             }
         }
         return injuredPlayers;
+    }
+
+    public String comparePlayers(Player player1, Player player2) {
+        StringBuilder result = new StringBuilder();
+        result.append("Comparison between ").append(player1.getName()).append(" and ")
+              .append(player2.getName()).append(":\n\n");
+        result.append("Position: ").append(player1.getPosition()).append(" vs ")
+              .append(player2.getPosition()).append("\n");
+        result.append("Age: ").append(player1.getAge()).append(" vs ")
+              .append(player2.getAge()).append("\n");
+        result.append("Height: ").append(player1.getHeight()).append(" vs ").append(player2.getHeight()).append("\n");
+        result.append("Jersey Number: ").append(player1.getJerseyNumber())
+              .append(" vs ").append(player2.getJerseyNumber()).append("\n");
+        result.append("Total Goals: ").append(player1.getTotalGoals())
+              .append(" vs ").append(player2.getTotalGoals()).append("\n");
+        result.append("Total Assists: ").append(player1.getTotalAssists())
+              .append(" vs ").append(player2.getTotalAssists()).append("\n");
+        result.append("Appearances: ").append(player1.getAppearances()).append(" vs ")
+              .append(player2.getAppearances()).append("\n");
+        result.append("Yellow Cards: ").append(player1.getYellowCards()).append(" vs ")
+              .append(player2.getYellowCards()).append("\n");
+        result.append("Red Cards: ").append(player1.getRedCards()).append(" vs ")
+              .append(player2.getRedCards()).append("\n");
+        result.append("Injured: ").append(player1.getIsInjured() ? "Yes" : "No").append(" vs ")
+              .append(player2.getIsInjured() ? "Yes" : "No").append("\n");
+        return result.toString();
     }
 
     @Override
