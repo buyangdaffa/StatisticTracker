@@ -220,107 +220,229 @@ public class StatisticTrackerGUI {
     // MODIFIES: The selected team in teams.
     // EFFECTS: Increments the win count of the selected team.
     private void incrementWins() {
-
+        teams.get(teamIndex).incrementWins();
+        updateTeamPanel();
     }
 
     // REQUIRES: teams is not empty, and teamIndex is a valid index in teams.
     // MODIFIES: The selected team in teams.
     // EFFECTS: Increments the loss count of the selected team.
     private void incrementLosses() {
-
+        teams.get(teamIndex).incrementLosses();
+        updateTeamPanel();
     }
 
     // REQUIRES: teams is not empty, and teamIndex is a valid index in teams.
     // MODIFIES: The selected team in teams.
     // EFFECTS: Increments the draw count of the selected team.
     private void incrementDraws() {
-
+        teams.get(teamIndex).incrementDraws();
+        updateTeamPanel();
     }
 
     // MODIFIES: The players list of the selected team.
     // EFFECTS: Opens a dialog to add a new player to the selected team.
     private void addPlayer() {
-
+        Team team = teams.get(teamIndex);
+        Object[] message = createPlayerInputFields();
+        int option = JOptionPane.showConfirmDialog(frame, message, "Add New Player", JOptionPane.OK_CANCEL_OPTION);
+        if (option == JOptionPane.OK_OPTION) {
+            handlePlayerInput(team, message);
+        }
     }
 
     // EFFECTS: Returns an array of input fields for adding a new player.
     private Object[] createPlayerInputFields() {
-        return null;
+        JTextField playerNameField = new JTextField();
+        JTextField playerPositionField = new JTextField();
+        JTextField playerAgeField = new JTextField();
+        JTextField playerHeightField = new JTextField();
+        JTextField playerJerseyNumberField = new JTextField();
+
+        return new Object[]{
+            "Player Name:", playerNameField,
+            "Player Position:", playerPositionField,
+            "Player Age:", playerAgeField,
+            "Player Height:", playerHeightField,
+            "Player Jersey Number:", playerJerseyNumberField
+        };
     }
 
     // REQUIRES: team is not null, and message contains valid input fields.
     // MODIFIES: team
     // EFFECTS: Parses input and adds a new player to the given team.
     private void handlePlayerInput(Team team, Object[] message) {
-
+        Player newPlayer = parsePlayerInput(message);
+        if (newPlayer != null) {
+            team.addPlayer(newPlayer);
+            JOptionPane.showMessageDialog(frame,
+                    "Player added successfully!",
+                    "Success", JOptionPane.INFORMATION_MESSAGE);
+            updateTeamPanel();
+        } else {
+            JOptionPane.showMessageDialog(frame,
+                    "All fields must be filled!",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     // REQUIRES: message contains valid input fields.
     // EFFECTS: Parses input fields to create a Player object. Returns null if input is invalid.
     private Player parsePlayerInput(Object[] message) {
-        return null;
+        JTextField playerNameField = (JTextField) message[1];
+        JTextField playerPositionField = (JTextField) message[3];
+        JTextField playerAgeField = (JTextField) message[5];
+        JTextField playerHeightField = (JTextField) message[7];
+        JTextField playerJerseyNumberField = (JTextField) message[9];
+
+        String playerName = playerNameField.getText();
+        String playerPosition = playerPositionField.getText();
+        int playerAge = Integer.parseInt(playerAgeField.getText());
+        int playerHeight = Integer.parseInt(playerHeightField.getText());
+        int playerJerseyNumber = Integer.parseInt(playerJerseyNumberField.getText());
+
+        if (!playerName.isEmpty() && !playerPosition.isEmpty()
+                && playerAge > 0 && playerHeight > 0 && playerJerseyNumber > 0) {
+            return new Player(playerName, playerPosition, playerAge,
+                    playerHeight, playerJerseyNumber);
+        } else {
+            return null;
+        }
     }
 
     // REQUIRES: teams is not empty, and teamIndex is a valid index in teams.
     // MODIFIES: The players list of the selected team.
     // EFFECTS: Opens a dialog to remove a player from the selected team.
     private void removePlayer() {
-
+        Team team = teams.get(teamIndex);
+    
+        if (team.getPlayers().isEmpty()) {
+            showErrorDialog("No players available to remove.");
+            return;
+        }
+    
+        List<String> playerNames = new ArrayList<>();
+        for (Player player : team.getPlayers()) {
+            playerNames.add(player.getName());
+        }
+        JComboBox<String> playerComboBox = new JComboBox<>(playerNames.toArray(new String[0]));
+    
+        Object[] message = {"Select Player to Remove:", playerComboBox};
+        int option = JOptionPane.showConfirmDialog(frame, message, "Remove Player", JOptionPane.OK_CANCEL_OPTION);
+        if (option == JOptionPane.OK_OPTION) {
+            handlePlayerRemoval(team, (String) playerComboBox.getSelectedItem());
+        }
     }
 
     // REQUIRES: team is not null, playerName is not null or empty.
     // MODIFIES: team
     // EFFECTS: Removes a player by name from the given team.
     private void handlePlayerRemoval(Team team, String playerName) {
-
+        if (playerName != null && !playerName.trim().isEmpty()) {
+            if (team.removePlayer(playerName)) {
+                showInfoDialog("Player removed successfully!");
+            } else {
+                showErrorDialog("Player not found!");
+            }
+        } else {
+            showErrorDialog("Player name cannot be empty!");
+        }
+        updateTeamPanel();
     }
 
     // REQUIRES: message is not null.
     // EFFECTS: Displays an error dialog with the given message.
     private void showErrorDialog(String message) {
-
+        JOptionPane.showMessageDialog(frame, message, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
     // REQUIRES: message is not null.
     // EFFECTS: Displays an information dialog with the given message.
     private void showInfoDialog(String message) {
-
+        JOptionPane.showMessageDialog(frame, message, "Success", JOptionPane.INFORMATION_MESSAGE);
     }
 
     // REQUIRES: teams is not empty, teamIndex is a valid index in teams, and the team has at least two players.
     // EFFECTS: Opens a dialog to compare two players from the selected team.
     private void comparePlayers() {
+        Team team = teams.get(teamIndex);
 
+        if (team.getTotalPlayers() < 2) {
+            showErrorDialog("Not enough players to compare.");
+            return;
+        }
+
+        List<String> playerNames = new ArrayList<>();
+        for (Player player : team.getPlayers()) {
+            playerNames.add(player.getName());
+        }
+        JComboBox<String> player1ComboBox = new JComboBox<>(playerNames.toArray(new String[0]));
+        JComboBox<String> player2ComboBox = new JComboBox<>(playerNames.toArray(new String[0]));
+
+        Object[] message = {
+            "Player 1:", player1ComboBox,
+            "Player 2:", player2ComboBox
+        };
+
+        int option = JOptionPane.showConfirmDialog(frame, message, "Compare Players", JOptionPane.OK_CANCEL_OPTION);
+        if (option == JOptionPane.OK_OPTION) {
+            handlePlayerComparison(team, player1ComboBox, player2ComboBox);
+        }
     }
 
     // REQUIRES: team is not null, player1ComboBox and player2ComboBox are not null.
     // EFFECTS: Compares two selected players and displays the result.
-    private void handlePlayerComparison(Team team, JComboBox<String> player1ComboBox, JComboBox<String> player2ComboBox) {
+    private void handlePlayerComparison(Team team, JComboBox<String> player1ComboBox, 
+                                        JComboBox<String> player2ComboBox) {
+        String player1Name = (String) player1ComboBox.getSelectedItem();
+        String player2Name = (String) player2ComboBox.getSelectedItem();
 
+        if (player1Name.equals(player2Name)) {
+            showErrorDialog("Please select two different players.");
+            return;
+        }
+
+        Player player1 = team.getPlayerByName(player1Name);
+        Player player2 = team.getPlayerByName(player2Name);
+
+        if (player1 == null || player2 == null) {
+            showErrorDialog("One or both players not found.");
+            return;
+        }
+
+        String comparison = team.comparePlayers(player1, player2);
+        showInfoDialog(comparison);
     }
 
     // MODIFIES: this
     // EFFECTS: Displays the player panel for the selected team.
     private void viewEditPlayer() {
-
+        updatePlayerPanel();
+        cardLayout.show(mainPanel, "Players");
     }
 
     // MODIFIES: this
     // EFFECTS: Moves to the previous team and updates the view.
     private void previousTeam() {
-
+        if (this.teamIndex > 0) {
+            this.teamIndex--;
+            updateTeamPanel();
+        }
     }
 
     // MODIFIES: this
     // EFFECTS: Moves to the next team and updates the view.
     private void nextTeam() {
-
+        if (this.teamIndex < teams.size() - 1) {
+            this.teamIndex++;
+            updateTeamPanel();
+        }
     }
 
     // MODIFIES: this
     // EFFECTS: Returns to the main menu panel.
     private void backToMainMenu() {
-
+        cardLayout.show(mainPanel, "MainMenu");
     }
 
     // EFFECTS: Creates and returns the player management panel.
