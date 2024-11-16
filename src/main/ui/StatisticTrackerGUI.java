@@ -65,7 +65,7 @@ public class StatisticTrackerGUI {
 
         mainPanel.add(mainMenuPanel(), "MainMenu");
         mainPanel.add(teamPanel(), "Teams");
-        // mainPanel.add(playerPanel(), "Players");
+        mainPanel.add(playerPanel(), "Players");
 
         frame.add(mainPanel);
         frame.setVisible(true);
@@ -447,18 +447,70 @@ public class StatisticTrackerGUI {
 
     // EFFECTS: Creates and returns the player management panel.
     private JPanel playerPanel() {
-        return null;
+        JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+    
+        JLabel label = new JLabel("Players", JLabel.CENTER);
+        label.setFont(new Font("Arial", Font.BOLD, 18));
+        panel.add(label, BorderLayout.NORTH);
+    
+        JPanel centerPanel = createCenterPanel();
+        JScrollPane scrollPane = new JScrollPane(centerPanel);
+        panel.add(scrollPane, BorderLayout.CENTER);
+    
+        JPanel buttonPanelSouth = createButtonPanelSouth();
+        // panel.add(buttonPanelSouth, BorderLayout.SOUTH);
+    
+        return panel;
     }
 
     // EFFECTS: Creates and returns the center panel for the player panel.
     private JPanel createCenterPanel() {
-        return null;
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
+    
+        if (teams.isEmpty()) {
+            JLabel noTeamsLabel = new JLabel("No teams available", JLabel.CENTER);
+            noTeamsLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+            centerPanel.add(noTeamsLabel);
+        } else if (teams.get(teamIndex).getPlayers().isEmpty()) {
+            JLabel noPlayersLabel = new JLabel("No players available in this team", JLabel.CENTER);
+            noPlayersLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+            centerPanel.add(noPlayersLabel);
+        } else {
+            List<Player> players = teams.get(teamIndex).getPlayers();
+            Player playerShown = players.get(playerIndex);
+            JPanel playerInfoPanel = createPlayerInfoPanel(playerShown);
+            centerPanel.add(playerInfoPanel);
+        }
+    
+        return centerPanel;
     }
 
     // REQUIRES: playerShown is not null.
     // EFFECTS: Creates and returns a panel displaying information about the given player.
     private JPanel createPlayerInfoPanel(Player playerShown) {
-        return null;
+        JPanel playerInfoPanel = new JPanel();
+        playerInfoPanel.setLayout(new BoxLayout(playerInfoPanel, BoxLayout.Y_AXIS));
+        playerInfoPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        playerInfoPanel.add(new JLabel("Player Name: " + playerShown.getName()));
+        playerInfoPanel.add(new JLabel("Position: " + playerShown.getPosition()));
+        playerInfoPanel.add(new JLabel("Age: " + playerShown.getAge()));
+        playerInfoPanel.add(new JLabel("Height: " + playerShown.getHeight()));
+        playerInfoPanel.add(new JLabel("Jersey Number: " + playerShown.getJerseyNumber()));
+        playerInfoPanel.add(new JLabel("Minutes Played: " + playerShown.getMinPlayed()));
+        playerInfoPanel.add(new JLabel("Total Goals: " + playerShown.getTotalGoals()));
+        playerInfoPanel.add(new JLabel("Total Assists: " + playerShown.getTotalAssists()));
+        playerInfoPanel.add(new JLabel("Appearances: " + playerShown.getAppearances()));
+        playerInfoPanel.add(new JLabel("Yellow Cards: " + playerShown.getYellowCards()));
+        playerInfoPanel.add(new JLabel("Red Cards: " + playerShown.getRedCards()));
+        playerInfoPanel.add(new JLabel("Injured: " + (playerShown.getIsInjured() ? "Yes" : "No")));
+        playerInfoPanel.add(new JLabel("Wins: " + playerShown.getWins()));
+        playerInfoPanel.add(new JLabel("Losses: " + playerShown.getLosses()));
+        playerInfoPanel.add(new JLabel("Draws: " + playerShown.getDraws()));
+        playerInfoPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+    
+        return playerInfoPanel;
     }
 
     // EFFECTS: Creates and returns the button panel for the player panel.
@@ -598,7 +650,9 @@ public class StatisticTrackerGUI {
     // MODIFIES: this
     // EFFECTS: Updates the player panel with the latest information.
     private void updatePlayerPanel() {
-
+        JPanel playerPanel = playerPanel();
+        mainPanel.add(playerPanel, "Players");
+        cardLayout.show(mainPanel, "Players");
     }
 
     // MODIFIES: this
