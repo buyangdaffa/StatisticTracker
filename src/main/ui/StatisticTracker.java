@@ -206,30 +206,30 @@ public class StatisticTracker {
         } else if (input.equals("4")) {
             comparePlayersPrompt(team);
         } else if (input.equals("5")) {
-            caseFiveProcessEditCommands(team);
+            incrementWinsProcessEditCommands(team);
         } else if (input.equals("6")) {
-            caseSixProcessEditCommands(team);
+            incrementLossesProcessEditCommands(team);
         } else if (input.equals("7")) {
-            caseSevenProcessEditCommands(team);
+            incrementDrawsProcessEditCommands(team);
         } else {
             System.out.println("Invalid input. Please try again.");
         }
     }
 
     // EFFECTS: processes the user input for the edit team menu (case 5)
-    private void caseFiveProcessEditCommands(Team team) {
+    private void incrementWinsProcessEditCommands(Team team) {
         team.incrementWins();
         System.out.println("Wins incremented successfully!");
     }
 
     // EFFECTS: processes the user input for the edit team menu (case 6)
-    private void caseSixProcessEditCommands(Team team) {
+    private void incrementLossesProcessEditCommands(Team team) {
         team.incrementLosses();
         System.out.println("Losses incremented successfully!");
     }
 
     // EFFECTS: processes the user input for the edit team menu (case 7)
-    private void caseSevenProcessEditCommands(Team team) {
+    private void incrementDrawsProcessEditCommands(Team team) {
         team.incrementDraws();
         System.out.println("Draws incremented successfully!");
     }
