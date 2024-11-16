@@ -45,8 +45,8 @@ public class StatisticTrackerGUI {
     // MODIFIES: this
     // EFFECTS: Initializes the GUI with default values and components.
     public StatisticTrackerGUI() {
-        initializeUI();
         teams = new ArrayList<>();
+        initializeUI();
         jsonReader = new JsonReader("data/teams.json");
         jsonWriter = new JsonWriter("data/teams.json");
     }
@@ -65,6 +65,7 @@ public class StatisticTrackerGUI {
 
         mainPanel.add(mainMenuPanel(), "MainMenu");
         mainPanel.add(teamPanel(), "Teams");
+        // mainPanel.add(playerPanel(), "Players");
 
         frame.add(mainPanel);
         frame.setVisible(true);
@@ -114,7 +115,7 @@ public class StatisticTrackerGUI {
     private JPanel teamPanel() {
         JPanel panel = new JPanel(new BorderLayout());
         panel.add(createHeaderPanel(), BorderLayout.NORTH);
-        // panel.add(createScrollPane(), BorderLayout.CENTER);
+        panel.add(createScrollPane(), BorderLayout.CENTER);
         panel.add(createButtonPanel(), BorderLayout.SOUTH);
         return panel;
     }
@@ -138,9 +139,9 @@ public class StatisticTrackerGUI {
             noTeamsLabel.setFont(new Font("Arial", Font.PLAIN, 16));
             centerPanel.add(noTeamsLabel);
         } else {
-            // centerPanel.add(createTeamInfoPanel());
+            centerPanel.add(createTeamInfoPanel());
             centerPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-            // centerPanel.add(createPlayerPanel());
+            centerPanel.add(createPlayerPanel());
         }
     
         return new JScrollPane(centerPanel);
@@ -149,13 +150,33 @@ public class StatisticTrackerGUI {
     // REQUIRES: teams is not empty, and teamIndex is a valid index in teams.
     // EFFECTS: Creates and returns a panel displaying detailed information about the selected team.
     private JPanel createTeamInfoPanel() {
-        return null;
+        Team team = teams.get(teamIndex);
+        JPanel teamInfoPanel = new JPanel();
+        teamInfoPanel.setLayout(new BoxLayout(teamInfoPanel, BoxLayout.Y_AXIS));
+        teamInfoPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        teamInfoPanel.add(new JLabel("Team Name: " + team.getTeamName()));
+        teamInfoPanel.add(new JLabel("Coach: " + team.getCoachName()));
+        teamInfoPanel.add(new JLabel("Total Wins: " + team.getTotalWins()));
+        teamInfoPanel.add(new JLabel("Total Losses: " + team.getTotalLosses()));
+        teamInfoPanel.add(new JLabel("Total Draws: " + team.getTotalDraws()));
+        return teamInfoPanel;
     }
 
     // REQUIRES: teams is not empty, and teamIndex is a valid index in teams.
     // EFFECTS: Creates and returns a panel displaying the players of the selected team.
     private JPanel createPlayerPanel() {
-        return null;
+        Team team = teams.get(teamIndex);
+        JPanel playerPanel = new JPanel();
+        playerPanel.setLayout(new BoxLayout(playerPanel, BoxLayout.Y_AXIS));
+        playerPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        playerPanel.add(new JLabel("Players:"));
+    
+        for (Player player : team.getPlayers()) {
+            String playerInfo = player.getName() + " - Age: " + player.getAge() + ", Height: " + player.getHeight();
+            playerPanel.add(new JLabel(playerInfo));
+        }
+    
+        return playerPanel;
     }
 
     // EFFECTS: Creates and returns a panel containing buttons for managing teams and players.
@@ -198,21 +219,29 @@ public class StatisticTrackerGUI {
     // REQUIRES: teams is not empty, and teamIndex is a valid index in teams.
     // MODIFIES: The selected team in teams.
     // EFFECTS: Increments the win count of the selected team.
-    private void incrementWins() {}
+    private void incrementWins() {
+
+    }
 
     // REQUIRES: teams is not empty, and teamIndex is a valid index in teams.
     // MODIFIES: The selected team in teams.
     // EFFECTS: Increments the loss count of the selected team.
-    private void incrementLosses() {}
+    private void incrementLosses() {
+
+    }
 
     // REQUIRES: teams is not empty, and teamIndex is a valid index in teams.
     // MODIFIES: The selected team in teams.
     // EFFECTS: Increments the draw count of the selected team.
-    private void incrementDraws() {}
+    private void incrementDraws() {
+
+    }
 
     // MODIFIES: The players list of the selected team.
     // EFFECTS: Opens a dialog to add a new player to the selected team.
-    private void addPlayer() {}
+    private void addPlayer() {
+
+    }
 
     // EFFECTS: Returns an array of input fields for adding a new player.
     private Object[] createPlayerInputFields() {
@@ -222,7 +251,9 @@ public class StatisticTrackerGUI {
     // REQUIRES: team is not null, and message contains valid input fields.
     // MODIFIES: team
     // EFFECTS: Parses input and adds a new player to the given team.
-    private void handlePlayerInput(Team team, Object[] message) {}
+    private void handlePlayerInput(Team team, Object[] message) {
+
+    }
 
     // REQUIRES: message contains valid input fields.
     // EFFECTS: Parses input fields to create a Player object. Returns null if input is invalid.
@@ -233,50 +264,64 @@ public class StatisticTrackerGUI {
     // REQUIRES: teams is not empty, and teamIndex is a valid index in teams.
     // MODIFIES: The players list of the selected team.
     // EFFECTS: Opens a dialog to remove a player from the selected team.
-    private void removePlayer() {}
+    private void removePlayer() {
 
-    // REQUIRES: team is not null.
-    // EFFECTS: Returns a list of player names from the given team.
-    private List<String> getPlayerNames(Team team) {
-        return null;
     }
 
     // REQUIRES: team is not null, playerName is not null or empty.
     // MODIFIES: team
     // EFFECTS: Removes a player by name from the given team.
-    private void handlePlayerRemoval(Team team, String playerName) {}
+    private void handlePlayerRemoval(Team team, String playerName) {
+
+    }
 
     // REQUIRES: message is not null.
     // EFFECTS: Displays an error dialog with the given message.
-    private void showErrorDialog(String message) {}
+    private void showErrorDialog(String message) {
+
+    }
 
     // REQUIRES: message is not null.
     // EFFECTS: Displays an information dialog with the given message.
-    private void showInfoDialog(String message) {}
+    private void showInfoDialog(String message) {
+
+    }
 
     // REQUIRES: teams is not empty, teamIndex is a valid index in teams, and the team has at least two players.
     // EFFECTS: Opens a dialog to compare two players from the selected team.
-    private void comparePlayers() {}
+    private void comparePlayers() {
+
+    }
 
     // REQUIRES: team is not null, player1ComboBox and player2ComboBox are not null.
     // EFFECTS: Compares two selected players and displays the result.
-    private void handlePlayerComparison(Team team, JComboBox<String> player1ComboBox, JComboBox<String> player2ComboBox) {}
+    private void handlePlayerComparison(Team team, JComboBox<String> player1ComboBox, JComboBox<String> player2ComboBox) {
+
+    }
 
     // MODIFIES: this
     // EFFECTS: Displays the player panel for the selected team.
-    private void viewEditPlayer() {}
+    private void viewEditPlayer() {
+
+    }
 
     // MODIFIES: this
     // EFFECTS: Moves to the previous team and updates the view.
-    private void previousTeam() {}
+    private void previousTeam() {
+
+    }
 
     // MODIFIES: this
     // EFFECTS: Moves to the next team and updates the view.
-    private void nextTeam() {}
+    private void nextTeam() {
+
+    }
 
     // MODIFIES: this
     // EFFECTS: Returns to the main menu panel.
-    private void backToMainMenu() {}
+    private void backToMainMenu() {
+
+    }
 
     // EFFECTS: Creates and returns the player management panel.
     private JPanel playerPanel() {
@@ -317,47 +362,65 @@ public class StatisticTrackerGUI {
     // REQUIRES: teams is not empty, teamIndex and playerIndex are valid indices.
     // MODIFIES: The selected player.
     // EFFECTS: Increments the minutes played for the selected player.
-    private void incrementMinutesPlayed() {}
+    private void incrementMinutesPlayed() {
+
+    }
 
     // REQUIRES: teams is not empty, teamIndex and playerIndex are valid indices.
     // MODIFIES: The selected player.
     // EFFECTS: Increments the goal count for the selected player.
-    private void incrementTotalGoals() {}
+    private void incrementTotalGoals() {
+
+    }
 
     // REQUIRES: teams is not empty, teamIndex and playerIndex are valid indices.
     // MODIFIES: The selected player.
     // EFFECTS: Increments the assist count for the selected player.
-    private void incrementTotalAssists() {}
+    private void incrementTotalAssists() {
+
+    }
 
     // REQUIRES: teams is not empty, teamIndex and playerIndex are valid indices.
     // MODIFIES: The selected player.
     // EFFECTS: Increments the appearance count for the selected player.
-    private void incrementAppearances() {}
+    private void incrementAppearances() {
+
+    }
 
     // REQUIRES: teams is not empty, teamIndex and playerIndex are valid indices.
     // MODIFIES: The selected player.
     // EFFECTS: Increments the yellow card count for the selected player.
-    private void incrementYellowCards() {}
+    private void incrementYellowCards() {
+
+    }
 
     // REQUIRES: teams is not empty, teamIndex and playerIndex are valid indices.
     // MODIFIES: The selected player.
     // EFFECTS: Increments the red card count for the selected player.
-    private void incrementRedCards() {}
+    private void incrementRedCards() {
+
+    }
 
     // REQUIRES: teams is not empty, teamIndex and playerIndex are valid indices.
     // MODIFIES: The selected player.
     // EFFECTS: Toggles the injured status for the selected player.
-    private void toggleInjuredStatus() {}
+    private void toggleInjuredStatus() {
+
+    }
 
     // REQUIRES: teams is not empty, and teamIndex is a valid index in teams.
     // MODIFIES: this
     // EFFECTS: Moves to the previous player in the team.
-    private void previousPlayer() {}
+    private void previousPlayer() {
+        
+    }
 
     // REQUIRES: teams is not empty, and teamIndex is a valid index in teams.
     // MODIFIES: this
     // EFFECTS: Moves to the next player in the team.
-    private void nextPlayer() {}
+    private void nextPlayer() {
+
+    }
 
     // MODIFIES: this
     // EFFECTS: Opens a dialog to create a new team and adds it to the list of teams.
@@ -412,11 +475,17 @@ public class StatisticTrackerGUI {
 
     // MODIFIES: this
     // EFFECTS: Updates the player panel with the latest information.
-    private void updatePlayerPanel() {}
+    private void updatePlayerPanel() {
+
+    }
 
     // MODIFIES: this
     // EFFECTS: Updates the team panel with the latest information.
-    private void updateTeamPanel() {}
+    private void updateTeamPanel() {
+        JPanel teamPanel = teamPanel();
+        mainPanel.add(teamPanel, "Teams");
+        cardLayout.show(mainPanel, "Teams");
+    }
 
     // EFFECTS: Launches the Statistic Tracker GUI application.
     public static void main(String[] args) {
