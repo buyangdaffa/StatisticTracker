@@ -459,7 +459,7 @@ public class StatisticTrackerGUI {
         panel.add(scrollPane, BorderLayout.CENTER);
     
         JPanel buttonPanelSouth = createButtonPanelSouth();
-        // panel.add(buttonPanelSouth, BorderLayout.SOUTH);
+        panel.add(buttonPanelSouth, BorderLayout.SOUTH);
     
         return panel;
     }
@@ -515,22 +515,78 @@ public class StatisticTrackerGUI {
 
     // EFFECTS: Creates and returns the button panel for the player panel.
     private JPanel createButtonPanelSouth() {
-        return null;
+        JPanel buttonPanelSouth = new JPanel();
+        buttonPanelSouth.setLayout(new BoxLayout(buttonPanelSouth, BoxLayout.Y_AXIS));
+    
+        JPanel row1 = createRow1();
+        JPanel row2 = createRow2();
+        JPanel row3 = createRow3();
+    
+        buttonPanelSouth.add(row1);
+        buttonPanelSouth.add(row2);
+        buttonPanelSouth.add(row3);
+    
+        return buttonPanelSouth;
     }
 
     // EFFECTS: Creates and returns the first row of buttons for the player panel.
     private JPanel createRow1() {
-        return null;
+        JPanel row1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+    
+        JButton incrementYellowCardsButton = new JButton("Increment Yellow Cards");
+        JButton incrementRedCardsButton = new JButton("Increment Red Cards");
+        JButton toggleInjuredButton = new JButton("Toggle Injured Status");
+    
+        incrementYellowCardsButton.addActionListener(e -> incrementYellowCards());
+        incrementRedCardsButton.addActionListener(e -> incrementRedCards());
+        toggleInjuredButton.addActionListener(e -> toggleInjuredStatus());
+    
+        row1.add(incrementYellowCardsButton);
+        row1.add(incrementRedCardsButton);
+        row1.add(toggleInjuredButton);
+    
+        return row1;
     }
 
     // EFFECTS: Creates and returns the second row of buttons for the player panel.
     private JPanel createRow2() {
-        return null;
+        JPanel row2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+    
+        JButton incrementMinutesPlayedButton = new JButton("Increment Minutes Played");
+        JButton incrementTotalGoalsButton = new JButton("Increment Total Goals");
+        JButton incrementTotalAssistsButton = new JButton("Increment Total Assists");
+        JButton incrementAppearancesButton = new JButton("Increment Appearances");
+    
+        incrementMinutesPlayedButton.addActionListener(e -> incrementMinutesPlayed());
+        incrementTotalGoalsButton.addActionListener(e -> incrementTotalGoals());
+        incrementTotalAssistsButton.addActionListener(e -> incrementTotalAssists());
+        incrementAppearancesButton.addActionListener(e -> incrementAppearances());
+    
+        row2.add(incrementMinutesPlayedButton);
+        row2.add(incrementTotalGoalsButton);
+        row2.add(incrementTotalAssistsButton);
+        row2.add(incrementAppearancesButton);
+    
+        return row2;
     }
 
     // EFFECTS: Creates and returns the third row of buttons for the player panel.
     private JPanel createRow3() {
-        return null;
+        JPanel row3 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+    
+        JButton previousPlayerButton = new JButton("Previous Player");
+        JButton nextPlayerButton = new JButton("Next Player");
+        JButton backButton = new JButton("Back to Team Menu");
+    
+        previousPlayerButton.addActionListener(e -> previousPlayer());
+        nextPlayerButton.addActionListener(e -> nextPlayer());
+        backButton.addActionListener(e -> cardLayout.show(mainPanel, "Teams"));
+    
+        row3.add(previousPlayerButton);
+        row3.add(backButton);
+        row3.add(nextPlayerButton);
+    
+        return row3;
     }
 
     // REQUIRES: teams is not empty, teamIndex and playerIndex are valid indices.
