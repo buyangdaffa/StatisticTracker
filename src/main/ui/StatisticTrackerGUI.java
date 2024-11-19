@@ -593,63 +593,101 @@ public class StatisticTrackerGUI {
     // MODIFIES: The selected player.
     // EFFECTS: Increments the minutes played for the selected player.
     private void incrementMinutesPlayed() {
-
+        Player player = teams.get(teamIndex).getPlayers().get(playerIndex);
+    
+        String input = JOptionPane.showInputDialog(frame,
+                "Enter minutes played:", "Increment Minutes Played", JOptionPane.PLAIN_MESSAGE);
+        if (input != null && !input.trim().isEmpty()) {
+            try {
+                int minPlayed = Integer.parseInt(input.trim());
+                if (minPlayed > 0) {
+                    player.addMinPlayed(minPlayed);
+                    JOptionPane.showMessageDialog(frame,
+                            "Minutes played updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    updatePlayerPanel();
+                } else {
+                    JOptionPane.showMessageDialog(frame,
+                            "Minutes played must be a positive number.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(frame,
+                        "Invalid input. Please enter a valid number.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }
 
     // REQUIRES: teams is not empty, teamIndex and playerIndex are valid indices.
     // MODIFIES: The selected player.
     // EFFECTS: Increments the goal count for the selected player.
     private void incrementTotalGoals() {
-
+        Player player = teams.get(teamIndex).getPlayers().get(playerIndex);
+        player.addGoal();
+        updatePlayerPanel();
     }
 
     // REQUIRES: teams is not empty, teamIndex and playerIndex are valid indices.
     // MODIFIES: The selected player.
     // EFFECTS: Increments the assist count for the selected player.
     private void incrementTotalAssists() {
-
+        Player player = teams.get(teamIndex).getPlayers().get(playerIndex);
+        player.addAssist();
+        updatePlayerPanel();
     }
 
     // REQUIRES: teams is not empty, teamIndex and playerIndex are valid indices.
     // MODIFIES: The selected player.
     // EFFECTS: Increments the appearance count for the selected player.
     private void incrementAppearances() {
-
+        Player player = teams.get(teamIndex).getPlayers().get(playerIndex);
+        player.addAppearances();
+        updatePlayerPanel();
     }
 
     // REQUIRES: teams is not empty, teamIndex and playerIndex are valid indices.
     // MODIFIES: The selected player.
     // EFFECTS: Increments the yellow card count for the selected player.
     private void incrementYellowCards() {
-
+        Player player = teams.get(teamIndex).getPlayers().get(playerIndex);
+        player.addYellowCards();
+        updatePlayerPanel();
     }
 
     // REQUIRES: teams is not empty, teamIndex and playerIndex are valid indices.
     // MODIFIES: The selected player.
     // EFFECTS: Increments the red card count for the selected player.
     private void incrementRedCards() {
-
+        Player player = teams.get(teamIndex).getPlayers().get(playerIndex);
+        player.addRedCards();
+        updatePlayerPanel();
     }
 
     // REQUIRES: teams is not empty, teamIndex and playerIndex are valid indices.
     // MODIFIES: The selected player.
     // EFFECTS: Toggles the injured status for the selected player.
     private void toggleInjuredStatus() {
-
+        Player player = teams.get(teamIndex).getPlayers().get(playerIndex);
+        player.setIsInjured();
+        updatePlayerPanel();
     }
 
     // REQUIRES: teams is not empty, and teamIndex is a valid index in teams.
     // MODIFIES: this
     // EFFECTS: Moves to the previous player in the team.
     private void previousPlayer() {
-        
+        if (playerIndex > 0) {
+            playerIndex--;
+            updatePlayerPanel();
+        }
     }
 
     // REQUIRES: teams is not empty, and teamIndex is a valid index in teams.
     // MODIFIES: this
     // EFFECTS: Moves to the next player in the team.
     private void nextPlayer() {
-
+        if (playerIndex < teams.get(teamIndex).getTotalPlayers() - 1) {
+            playerIndex++;
+            updatePlayerPanel();
+        }
     }
 
     // MODIFIES: this
