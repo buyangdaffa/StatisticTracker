@@ -154,11 +154,13 @@ public class StatisticTrackerGUI {
         JPanel teamInfoPanel = new JPanel();
         teamInfoPanel.setLayout(new BoxLayout(teamInfoPanel, BoxLayout.Y_AXIS));
         teamInfoPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        teamInfoPanel.add(new JLabel("Team Name: " + team.getTeamName()));
+        teamInfoPanel.add(new JLabel("Team: " + team.getTeamName()));
         teamInfoPanel.add(new JLabel("Coach: " + team.getCoachName()));
-        teamInfoPanel.add(new JLabel("Total Wins: " + team.getTotalWins()));
-        teamInfoPanel.add(new JLabel("Total Losses: " + team.getTotalLosses()));
-        teamInfoPanel.add(new JLabel("Total Draws: " + team.getTotalDraws()));
+        teamInfoPanel.add(new JLabel("Wins: " + team.getTotalWins()));
+        teamInfoPanel.add(new JLabel("Losses: " + team.getTotalLosses()));
+        teamInfoPanel.add(new JLabel("Draws: " + team.getTotalDraws()));
+        teamInfoPanel.add(new JLabel("Average Age: " + team.getAverageAge()));
+        teamInfoPanel.add(new JLabel("Average Height: " + team.getAverageHeight()));
         return teamInfoPanel;
     }
 
@@ -169,11 +171,22 @@ public class StatisticTrackerGUI {
         JPanel playerPanel = new JPanel();
         playerPanel.setLayout(new BoxLayout(playerPanel, BoxLayout.Y_AXIS));
         playerPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        playerPanel.add(new JLabel("Players:"));
+        playerPanel.add(new JLabel("Players (Available):"));
     
         for (Player player : team.getPlayers()) {
-            String playerInfo = player.getName() + " - Age: " + player.getAge() + ", Height: " + player.getHeight();
-            playerPanel.add(new JLabel(playerInfo));
+            if (!player.getIsInjured()) {
+                String playerInfo = player.getName() + "/" + player.getPosition() + "/" + player.getJerseyNumber();
+                playerPanel.add(new JLabel(playerInfo));
+            }
+        }
+
+        playerPanel.add(new JLabel("Players (Injured):"));
+    
+        for (Player player : team.getPlayers()) {
+            if (player.getIsInjured()) {
+                String playerInfo = player.getName() + "/" + player.getPosition() + "/" + player.getJerseyNumber();
+                playerPanel.add(new JLabel(playerInfo));
+            }
         }
     
         return playerPanel;
@@ -602,6 +615,8 @@ public class StatisticTrackerGUI {
                 int minPlayed = Integer.parseInt(input.trim());
                 if (minPlayed > 0) {
                     player.addMinPlayed(minPlayed);
+                    updatePlayerPanel();
+                    updateTeamPanelWithoutShowingTeamPanel();
                     JOptionPane.showMessageDialog(frame,
                             "Minutes played updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     updatePlayerPanel();
@@ -623,6 +638,7 @@ public class StatisticTrackerGUI {
         Player player = teams.get(teamIndex).getPlayers().get(playerIndex);
         player.addGoal();
         updatePlayerPanel();
+        updateTeamPanelWithoutShowingTeamPanel();
     }
 
     // REQUIRES: teams is not empty, teamIndex and playerIndex are valid indices.
@@ -632,6 +648,7 @@ public class StatisticTrackerGUI {
         Player player = teams.get(teamIndex).getPlayers().get(playerIndex);
         player.addAssist();
         updatePlayerPanel();
+        updateTeamPanelWithoutShowingTeamPanel();
     }
 
     // REQUIRES: teams is not empty, teamIndex and playerIndex are valid indices.
@@ -641,6 +658,7 @@ public class StatisticTrackerGUI {
         Player player = teams.get(teamIndex).getPlayers().get(playerIndex);
         player.addAppearances();
         updatePlayerPanel();
+        updateTeamPanelWithoutShowingTeamPanel();
     }
 
     // REQUIRES: teams is not empty, teamIndex and playerIndex are valid indices.
@@ -650,6 +668,7 @@ public class StatisticTrackerGUI {
         Player player = teams.get(teamIndex).getPlayers().get(playerIndex);
         player.addYellowCards();
         updatePlayerPanel();
+        updateTeamPanelWithoutShowingTeamPanel();
     }
 
     // REQUIRES: teams is not empty, teamIndex and playerIndex are valid indices.
@@ -659,6 +678,7 @@ public class StatisticTrackerGUI {
         Player player = teams.get(teamIndex).getPlayers().get(playerIndex);
         player.addRedCards();
         updatePlayerPanel();
+        updateTeamPanelWithoutShowingTeamPanel();
     }
 
     // REQUIRES: teams is not empty, teamIndex and playerIndex are valid indices.
@@ -668,6 +688,7 @@ public class StatisticTrackerGUI {
         Player player = teams.get(teamIndex).getPlayers().get(playerIndex);
         player.setIsInjured();
         updatePlayerPanel();
+        updateTeamPanelWithoutShowingTeamPanel();
     }
 
     // REQUIRES: teams is not empty, and teamIndex is a valid index in teams.
@@ -755,6 +776,13 @@ public class StatisticTrackerGUI {
         JPanel teamPanel = teamPanel();
         mainPanel.add(teamPanel, "Teams");
         cardLayout.show(mainPanel, "Teams");
+    }
+
+    // MODIFIES: this
+    // EFFECTS: Updates the team panel with the latest information.
+    private void updateTeamPanelWithoutShowingTeamPanel() {
+        JPanel teamPanel = teamPanel();
+        mainPanel.add(teamPanel, "Teams");
     }
 
     // EFFECTS: Launches the Statistic Tracker GUI application.

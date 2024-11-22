@@ -192,6 +192,8 @@ public class Team implements Writable {
         return injuredPlayers;
     }
 
+    // REQUIRES: player1 and player2 should be non-null
+    // EFFECTS: returns a string representation of the team
     public String comparePlayers(Player player1, Player player2) {
         StringBuilder result = new StringBuilder();
         result.append("Comparison between ").append(player1.getName()).append(" and ")
