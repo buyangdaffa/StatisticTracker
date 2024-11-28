@@ -51,6 +51,7 @@ public class Player implements Writable {
         this.wins = 0;
         this.losses = 0;
         this.draws = 0;
+        EventLog.getInstance().logEvent(new Event("created player " + this.name " with jersey number " + this.jerseyNumber " who plays as a " + this.position));
     }
 
     public String getName() {
@@ -120,6 +121,7 @@ public class Player implements Writable {
      */
     public void addMinPlayed(int minPlayed) {
         this.minPlayed += minPlayed;
+        EventLog.getInstance().logEvent(new Event("added " + minPlayed + " minutes to " + this.name));
     }
 
     /**
@@ -128,6 +130,7 @@ public class Player implements Writable {
      */
     public void addGoal() {
         this.totalGoals++;
+        EventLog.getInstance().logEvent(new Event("added a goal to " + this.name));
     }
 
     /**
@@ -136,6 +139,7 @@ public class Player implements Writable {
      */
     public void addAssist() {
         this.totalAssists++;
+        EventLog.getInstance().logEvent(new Event("added an assist to " + this.name));
     }
 
     /**
@@ -144,6 +148,7 @@ public class Player implements Writable {
      */
     public void addAppearances() {
         this.appearances++;
+        EventLog.getInstance().logEvent(new Event("added an appearance to " + this.name));
     }
 
     /**
@@ -152,6 +157,7 @@ public class Player implements Writable {
      */
     public void addYellowCards() {
         this.yellowCards++;
+        EventLog.getInstance().logEvent(new Event("added a yellow card to " + this.name));
     }
 
     /**
@@ -160,6 +166,7 @@ public class Player implements Writable {
      */
     public void addRedCards() {
         this.redCards++;
+        EventLog.getInstance().logEvent(new Event("added a red card to " + this.name));
     }
 
     /**
@@ -168,6 +175,7 @@ public class Player implements Writable {
      */
     public void setIsInjured() {
         this.isInjured = !this.isInjured;
+        EventLog.getInstance().logEvent(new Event("changed injury status of " + this.name));
     }
 
     /**
@@ -176,6 +184,7 @@ public class Player implements Writable {
      */
     public void incrementWins() {
         this.wins++;
+        EventLog.getInstance().logEvent(new Event("added a win to " + this.name));
     }
 
     /**
@@ -184,6 +193,7 @@ public class Player implements Writable {
      */
     public void incrementLosses() {
         this.losses++;
+        EventLog.getInstance().logEvent(new Event("added a loss to " + this.name));
     }
 
     /**
@@ -192,6 +202,7 @@ public class Player implements Writable {
      */
     public void incrementDraws() {
         this.draws++;
+        EventLog.getInstance().logEvent(new Event("added a draw to " + this.name));
     }
 
     /**

@@ -1,5 +1,6 @@
 package ui;
 
+import model.EventLog;
 import model.Player;
 import model.Team;
 
@@ -67,6 +68,13 @@ public class StatisticTrackerGUI {
         mainPanel.add(teamPanel(), "Teams");
         mainPanel.add(playerPanel(), "Players");
 
+        frame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                exitApplication();
+            }
+        });
+
         frame.add(mainPanel);
         frame.setVisible(true);
     }
@@ -90,7 +98,7 @@ public class StatisticTrackerGUI {
         });
         addButton(panel, "Load Teams from File", e -> loadTeams());
         addButton(panel, "Save Teams to File", e -> saveTeams());
-        addButton(panel, "Exit", e -> System.exit(0));
+        addButton(panel, "Exit", e -> exitApplication());
     
         return panel;
     }
@@ -783,6 +791,18 @@ public class StatisticTrackerGUI {
     private void updateTeamPanelWithoutShowingTeamPanel() {
         JPanel teamPanel = teamPanel();
         mainPanel.add(teamPanel, "Teams");
+    }
+
+    private void printEventLog() {
+        System.out.println("Event log:");
+        for (model.Event event : EventLog.getInstance()) {
+            System.out.println(event.getDescription());
+        }
+    }
+
+    private void exitApplication() {
+        printEventLog();
+        System.exit(0);
     }
 
     // EFFECTS: Launches the Statistic Tracker GUI application.

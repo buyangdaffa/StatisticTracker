@@ -36,6 +36,8 @@ public class Team implements Writable {
         this.totalWins = 0;
         this.totalLosses = 0;
         this.totalDraws = 0;
+        EventLog.getInstance().logEvent(new Event("created team " + this.teamName + 
+                " that is coached by " + this.coachName));
     }
 
     public String getTeamName() {
@@ -68,6 +70,7 @@ public class Team implements Writable {
      */
     public void addPlayer(Player player) {
         this.players.add(player);
+        EventLog.getInstance().logEvent(new Event("added player " + player.getName() + " to team " + this.teamName));
     }
 
     /**
@@ -82,6 +85,7 @@ public class Team implements Writable {
                 return true;
             }
         }
+        EventLog.getInstance().logEvent(new Event("removed player " + playerName + " from team " + this.teamName));
         return false;
     }
 
@@ -107,6 +111,7 @@ public class Team implements Writable {
         for (Player player : this.players) {
             player.incrementWins();
         }
+        EventLog.getInstance().logEvent(new Event("added a win to team " + this.teamName));
     }
 
     /**
@@ -118,6 +123,7 @@ public class Team implements Writable {
         for (Player player : this.players) {
             player.incrementLosses();
         }
+        EventLog.getInstance().logEvent(new Event("added a loss to team " + this.teamName));
     }
 
     /**
@@ -129,6 +135,7 @@ public class Team implements Writable {
         for (Player player : this.players) {
             player.incrementDraws();
         }
+        EventLog.getInstance().logEvent(new Event("added a draw to team " + this.teamName));
     }
 
     /**
@@ -195,6 +202,13 @@ public class Team implements Writable {
     // REQUIRES: player1 and player2 should be non-null
     // EFFECTS: returns a string representation of the team
     public String comparePlayers(Player player1, Player player2) {
+        
+        EventLog.getInstance().logEvent(new Event("compared players " + player1.getName() 
+                + " and " + player2.getName()));
+        return comparePlayersStringBuilder(player1, player2);
+    }
+
+    private String comparePlayersStringBuilder(Player player1, Player player2) {
         StringBuilder result = new StringBuilder();
         result.append("Comparison between ").append(player1.getName()).append(" and ")
               .append(player2.getName()).append(":\n\n");
@@ -217,6 +231,7 @@ public class Team implements Writable {
               .append(player2.getRedCards()).append("\n");
         result.append("Injured: ").append(player1.getIsInjured() ? "Yes" : "No").append(" vs ")
               .append(player2.getIsInjured() ? "Yes" : "No").append("\n");
+
         return result.toString();
     }
 

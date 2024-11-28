@@ -20,3 +20,21 @@ I am particularly interested in this project because I am a big soccer fan and a
 - You can locate my visual component by running the StatisticTrackerGUI. My visual component is located on the main panel of the application which is the logo of the application.
 - You can save the state of my application by running the StatisticTrackerGUI. Then, in the main panel, there will be a button with a text "Save Teams to File" that you need to click which allows you to save your current state of data to the JSON file.
 - You can reload the state of my application by running the StatisticTrackerGUI. Then, in the main panel, there will be a button with a text" Load Teams from File" that you need to click which allows you to load your JSON file as the data input for the application you currently running.
+
+## Phase 4: Task 2
+Event log:
+created team Indonesia
+created player Thom Haye
+added player Thom Haye to team Indonesia
+added a win to Thom Haye
+added a win to team Indonesia
+added a loss to Thom Haye
+added a loss to team Indonesia
+added a draw to Thom Haye
+added a draw to team Indonesia
+added a yellow card to Thom Haye
+added a red card to Thom Haye
+changed injury status of Thom Haye
+added an assist to Thom Haye
+added a goal to Thom Haye
+added90 minutes to Thom Haye
