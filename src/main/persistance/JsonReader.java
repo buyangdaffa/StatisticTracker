@@ -2,6 +2,8 @@ package persistance;
 
 import model.Player;
 import model.Team;
+import model.Event;
+import model.EventLog;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -38,6 +40,7 @@ public class JsonReader {
     public List<Team> read() throws IOException {
         String jsonData = readFile(source);
         JSONArray jsonArray = new JSONArray(jsonData);
+        EventLog.getInstance().logEvent(new Event("read team data from file"));
         return parseTeams(jsonArray);
     }
 

@@ -1,6 +1,8 @@
 package persistance;
 
 import model.Team;
+import model.Event;
+import model.EventLog;
 import org.json.JSONArray;
 
 import java.io.*;
@@ -42,6 +44,7 @@ public class JsonWriter {
             jsonArray.put(team.toJson());
         }
         saveToFile(jsonArray.toString(TAB));
+        EventLog.getInstance().logEvent(new Event("saved team data to file"));
     }
 
     // MODIFIES: this
