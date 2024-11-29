@@ -22,7 +22,7 @@ I am particularly interested in this project because I am a big soccer fan and a
 - You can reload the state of my application by running the StatisticTrackerGUI. Then, in the main panel, there will be a button with a text" Load Teams from File" that you need to click which allows you to load your JSON file as the data input for the application you currently running.
 
 ## Phase 4: Task 2
-Event log:
+Event log:  
 created team Indonesia that is coached by Shin Tae Yong // Fri Nov 29 04:08:42 PST 2024  
 displaying available players for team Indonesia // Fri Nov 29 04:08:44 PST 2024  
 displaying injured players for team Indonesia // Fri Nov 29 04:08:44 PST 2024  
