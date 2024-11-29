@@ -484,7 +484,7 @@ public class StatisticTracker {
     private void printEventLog() {
         System.out.println("Event log:");
         for (model.Event event : EventLog.getInstance()) {
-            System.out.println(event.getDescription());
+            System.out.println(event.getDescription() + " // " + event.getDate().toString());
         }
     }
 }
