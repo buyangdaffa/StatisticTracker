@@ -60,3 +60,8 @@ displaying injured players for team Indonesia // Fri Nov 29 04:09:03 PST 2024
 added 65 minutes to Thom Haye // Fri Nov 29 04:09:06 PST 2024
 displaying available players for team Indonesia // Fri Nov 29 04:09:06 PST 2024
 displaying injured players for team Indonesia // Fri Nov 29 04:09:06 PST 2024
+
+## Phase 4: Task 3
+As a potential refactoring for this design, an abstract class called Player could be created and then extended to create classes that reflect different roles a player could have (soccer players, for instance, could be Goalkeeper, Forward, or Defender) or differentiating players based on the type of the sports like SoccerPlayer, BasketballPlayer or BaseballPlayer. Such abstraction helps the system encapsulate attributes or behaviors relevant to the role such as saves for goalkeepers, shots on goal for forwards, etc improving the modularity and flexibility of the system. 
+
+Furthermore, the issue of coupling between StatisticTrackerGUI, JsonWriter and JsonReader is also important to focus on in order to enhance maintainability. As it stands, the fact that the three are tightly coupled does not encourage swapping or extending the persistence mechanisms. There are definite advantages to decoupling the GUI from specific implementations of, say, JsonWriter and JsonReader, in favor of a general PersistenceManager interface that exposes general data reading and writing operations. This does not only comply with the Dependency Inversion Principle, it further helps in increasing extensibility of the system, allowing for other storage formats including XML and even databases to be incorporated to StatisticTrackerGUI with few modifications. Such refactorings improve cohesiveness and lower dependencies, promoting more robust and scalable design.
