@@ -183,6 +183,7 @@ public class Team implements Writable {
                 availablePlayers.add(player);
             }
         }
+        EventLog.getInstance().logEvent(new Event("displaying available players for team " + this.teamName));
         return availablePlayers;
     }
 
@@ -196,6 +197,7 @@ public class Team implements Writable {
                 injuredPlayers.add(player);
             }
         }
+        EventLog.getInstance().logEvent(new Event("displaying injured players for team " + this.teamName));
         return injuredPlayers;
     }
 

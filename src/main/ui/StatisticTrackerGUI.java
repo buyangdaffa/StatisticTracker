@@ -181,20 +181,16 @@ public class StatisticTrackerGUI {
         playerPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         playerPanel.add(new JLabel("Players (Available):"));
     
-        for (Player player : team.getPlayers()) {
-            if (!player.getIsInjured()) {
-                String playerInfo = player.getName() + "/" + player.getPosition() + "/" + player.getJerseyNumber();
-                playerPanel.add(new JLabel(playerInfo));
-            }
+        for (Player player : team.getAvailablePlayers()) {
+            String playerInfo = player.getName() + "/" + player.getPosition() + "/" + player.getJerseyNumber();
+            playerPanel.add(new JLabel(playerInfo));
         }
 
         playerPanel.add(new JLabel("Players (Injured):"));
     
-        for (Player player : team.getPlayers()) {
-            if (player.getIsInjured()) {
-                String playerInfo = player.getName() + "/" + player.getPosition() + "/" + player.getJerseyNumber();
-                playerPanel.add(new JLabel(playerInfo));
-            }
+        for (Player player : team.getInjuredPlayers()) {
+            String playerInfo = player.getName() + "/" + player.getPosition() + "/" + player.getJerseyNumber();
+            playerPanel.add(new JLabel(playerInfo));
         }
     
         return playerPanel;
