@@ -23,43 +23,43 @@ I am particularly interested in this project because I am a big soccer fan and a
 
 ## Phase 4: Task 2
 Event log:
-created team Indonesia that is coached by Shin Tae Yong // Fri Nov 29 04:08:42 PST 2024
-displaying available players for team Indonesia // Fri Nov 29 04:08:44 PST 2024
-displaying injured players for team Indonesia // Fri Nov 29 04:08:44 PST 2024
-created player Thom Haye with jersey number 19 who plays as a MF // Fri Nov 29 04:08:56 PST 2024
-added player Thom Haye to team Indonesia // Fri Nov 29 04:08:56 PST 2024
-displaying available players for team Indonesia // Fri Nov 29 04:08:57 PST 2024
-displaying injured players for team Indonesia // Fri Nov 29 04:08:57 PST 2024
-added a win to Thom Haye // Fri Nov 29 04:08:58 PST 2024
-added a win to team Indonesia // Fri Nov 29 04:08:58 PST 2024
-displaying available players for team Indonesia // Fri Nov 29 04:08:58 PST 2024
-displaying injured players for team Indonesia // Fri Nov 29 04:08:58 PST 2024
-added a loss to Thom Haye // Fri Nov 29 04:08:59 PST 2024
-added a loss to team Indonesia // Fri Nov 29 04:08:59 PST 2024
-displaying available players for team Indonesia // Fri Nov 29 04:08:59 PST 2024
-displaying injured players for team Indonesia // Fri Nov 29 04:08:59 PST 2024
-added a draw to Thom Haye // Fri Nov 29 04:08:59 PST 2024
-added a draw to team Indonesia // Fri Nov 29 04:08:59 PST 2024
-displaying available players for team Indonesia // Fri Nov 29 04:08:59 PST 2024
-displaying injured players for team Indonesia // Fri Nov 29 04:08:59 PST 2024
-added a yellow card to Thom Haye // Fri Nov 29 04:09:01 PST 2024
-displaying available players for team Indonesia // Fri Nov 29 04:09:01 PST 2024
-displaying injured players for team Indonesia // Fri Nov 29 04:09:01 PST 2024
-added a red card to Thom Haye // Fri Nov 29 04:09:02 PST 2024
-displaying available players for team Indonesia // Fri Nov 29 04:09:02 PST 2024
-displaying injured players for team Indonesia // Fri Nov 29 04:09:02 PST 2024
-changed injury status of Thom Haye // Fri Nov 29 04:09:02 PST 2024
-displaying available players for team Indonesia // Fri Nov 29 04:09:02 PST 2024
-displaying injured players for team Indonesia // Fri Nov 29 04:09:02 PST 2024
-added an assist to Thom Haye // Fri Nov 29 04:09:03 PST 2024
-displaying available players for team Indonesia // Fri Nov 29 04:09:03 PST 2024
-displaying injured players for team Indonesia // Fri Nov 29 04:09:03 PST 2024
-added a goal to Thom Haye // Fri Nov 29 04:09:03 PST 2024
-displaying available players for team Indonesia // Fri Nov 29 04:09:03 PST 2024
-displaying injured players for team Indonesia // Fri Nov 29 04:09:03 PST 2024
-added 65 minutes to Thom Haye // Fri Nov 29 04:09:06 PST 2024
-displaying available players for team Indonesia // Fri Nov 29 04:09:06 PST 2024
-displaying injured players for team Indonesia // Fri Nov 29 04:09:06 PST 2024
+created team Indonesia that is coached by Shin Tae Yong // Fri Nov 29 04:08:42 PST 2024  
+displaying available players for team Indonesia // Fri Nov 29 04:08:44 PST 2024  
+displaying injured players for team Indonesia // Fri Nov 29 04:08:44 PST 2024  
+created player Thom Haye with jersey number 19 who plays as a MF // Fri Nov 29 04:08:56 PST 2024  
+added player Thom Haye to team Indonesia // Fri Nov 29 04:08:56 PST 2024  
+displaying available players for team Indonesia // Fri Nov 29 04:08:57 PST 2024  
+displaying injured players for team Indonesia // Fri Nov 29 04:08:57 PST 2024  
+added a win to Thom Haye // Fri Nov 29 04:08:58 PST 2024  
+added a win to team Indonesia // Fri Nov 29 04:08:58 PST 2024  
+displaying available players for team Indonesia // Fri Nov 29 04:08:58 PST 2024  
+displaying injured players for team Indonesia // Fri Nov 29 04:08:58 PST 2024  
+added a loss to Thom Haye // Fri Nov 29 04:08:59 PST 2024  
+added a loss to team Indonesia // Fri Nov 29 04:08:59 PST 2024  
+displaying available players for team Indonesia // Fri Nov 29 04:08:59 PST 2024  
+displaying injured players for team Indonesia // Fri Nov 29 04:08:59 PST 2024  
+added a draw to Thom Haye // Fri Nov 29 04:08:59 PST 2024  
+added a draw to team Indonesia // Fri Nov 29 04:08:59 PST 2024  
+displaying available players for team Indonesia // Fri Nov 29 04:08:59 PST 2024  
+displaying injured players for team Indonesia // Fri Nov 29 04:08:59 PST 2024  
+added a yellow card to Thom Haye // Fri Nov 29 04:09:01 PST 2024  
+displaying available players for team Indonesia // Fri Nov 29 04:09:01 PST 2024  
+displaying injured players for team Indonesia // Fri Nov 29 04:09:01 PST 2024  
+added a red card to Thom Haye // Fri Nov 29 04:09:02 PST 2024  
+displaying available players for team Indonesia // Fri Nov 29 04:09:02 PST 2024  
+displaying injured players for team Indonesia // Fri Nov 29 04:09:02 PST 2024  
+changed injury status of Thom Haye // Fri Nov 29 04:09:02 PST 2024  
+displaying available players for team Indonesia // Fri Nov 29 04:09:02 PST 2024  
+displaying injured players for team Indonesia // Fri Nov 29 04:09:02 PST 2024  
+added an assist to Thom Haye // Fri Nov 29 04:09:03 PST 2024  
+displaying available players for team Indonesia // Fri Nov 29 04:09:03 PST 2024  
+displaying injured players for team Indonesia // Fri Nov 29 04:09:03 PST 2024  
+added a goal to Thom Haye // Fri Nov 29 04:09:03 PST 2024  
+displaying available players for team Indonesia // Fri Nov 29 04:09:03 PST 2024  
+displaying injured players for team Indonesia // Fri Nov 29 04:09:03 PST 2024  
+added 65 minutes to Thom Haye // Fri Nov 29 04:09:06 PST 2024  
+displaying available players for team Indonesia // Fri Nov 29 04:09:06 PST 2024  
+displaying injured players for team Indonesia // Fri Nov 29 04:09:06 PST 2024  
 
 ## Phase 4: Task 3
 As a potential refactoring for this design, an abstract class called Player could be created and then extended to create classes that reflect different roles a player could have (soccer players, for instance, could be Goalkeeper, Forward, or Defender) or differentiating players based on the type of the sports like SoccerPlayer, BasketballPlayer or BaseballPlayer. Such abstraction helps the system encapsulate attributes or behaviors relevant to the role such as saves for goalkeepers, shots on goal for forwards, etc improving the modularity and flexibility of the system. 
