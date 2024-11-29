@@ -1,5 +1,6 @@
 package ui;
 
+import model.EventLog;
 import model.Player;
 import model.Team;
 
@@ -81,6 +82,7 @@ public class StatisticTracker {
                 break;
             case "5":
                 this.running = false;
+                exitApplication();
                 break;
             default:
                 printSeparator();
@@ -471,6 +473,18 @@ public class StatisticTracker {
             System.out.println("Teams loaded from file successfully!");
         } catch (IOException e) {
             System.out.println("Unable to load teams from file: " + e.getMessage());
+        }
+    }
+
+    private void exitApplication() {
+        printEventLog();
+        System.exit(0);
+    }
+
+    private void printEventLog() {
+        System.out.println("Event log:");
+        for (model.Event event : EventLog.getInstance()) {
+            System.out.println(event.getDescription());
         }
     }
 }

@@ -36,8 +36,8 @@ public class Team implements Writable {
         this.totalWins = 0;
         this.totalLosses = 0;
         this.totalDraws = 0;
-        EventLog.getInstance().logEvent(new Event("created team " + this.teamName + 
-                " that is coached by " + this.coachName));
+        EventLog.getInstance().logEvent(new Event("created team " + this.teamName 
+                    + " that is coached by " + this.coachName));
     }
 
     public String getTeamName() {

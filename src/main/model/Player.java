@@ -51,7 +51,8 @@ public class Player implements Writable {
         this.wins = 0;
         this.losses = 0;
         this.draws = 0;
-        EventLog.getInstance().logEvent(new Event("created player " + this.name " with jersey number " + this.jerseyNumber " who plays as a " + this.position));
+        EventLog.getInstance().logEvent(new Event("created player " + this.name 
+                + " with jersey number " + this.jerseyNumber + " who plays as a " + this.position));
     }
 
     public String getName() {
