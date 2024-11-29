@@ -486,5 +486,5 @@ public class StatisticTracker {
         for (model.Event event : EventLog.getInstance()) {
             System.out.println(event.getDescription() + " // " + event.getDate().toString());
         }
-    }
+    } 
 }
